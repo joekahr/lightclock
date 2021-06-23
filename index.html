@@ -18,7 +18,7 @@
     <meta name="description" content="Light Clock">
     <meta name="author" content="joekahr@gmail.com">
     <meta name="generator" content="Joe Kahr">
-    <meta name="version" content="15.1">
+    <meta name="version" content="15.2">
     <meta name="viewport" content="width=device-width,user-scalable=0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 	
     <style type="text/css">
@@ -2678,7 +2678,7 @@ function ref_frame(frame)
 		S_diagrams_title = "Spacetime Diagrams for Laboratory Frame"; $i("S_diagrams_span").title = S_diagrams_title;
     Sprime_diagrams_title = "Spacetime Diagrams for Rocket Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
 		$i("speed_span").title = "v = speed the Light Clock is moving through space\n[Click value to change it]";
-    //centeredButton(false);
+    centeredButton(false);
 	}
   else if (frame == 'SR_rocket')
   {
@@ -2693,7 +2693,7 @@ function ref_frame(frame)
 		S_diagrams_title = "Spacetime Diagrams for Laboratory Frame"; $i("S_diagrams_span").title = S_diagrams_title;
     Sprime_diagrams_title = "Spacetime Diagrams for Rocket Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
 		$i("speed_span").title = "v = speed the Light Clock is moving through space\n[Click value to change it]";
-    //centeredButton(false);
+    centeredButton(true);
 	}
 	else if (frame == 'GR_rain')
 	{
@@ -2708,7 +2708,7 @@ function ref_frame(frame)
     S_diagrams_title = "Spacetime Diagrams for Free-Falling Rain Frame"; $i("S_diagrams_span").title = S_diagrams_title;
     Sprime_diagrams_title = "Spacetime Diagrams for Stationary Shell Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
 		$i("speed_span").title = "v = speed space is moving past the stationary Light Clock\n[Click value to change it]";
-    //centeredButton(false);
+    centeredButton(false);
 	}
   else if (frame == 'GR_shell')
 	{
@@ -2723,7 +2723,7 @@ function ref_frame(frame)
     S_diagrams_title = "Spacetime Diagrams for Free-Falling Rain Frame"; $i("S_diagrams_span").title = S_diagrams_title;
     Sprime_diagrams_title = "Spacetime Diagrams for Stationary Shell Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
 		$i("speed_span").title = "v = speed space is moving past the stationary Light Clock\n[Click value to change it]";
-    //centeredButton(false);
+    centeredButton(true);
 	}
 	else if (frame == 'GR_far')
 	{
@@ -2739,7 +2739,7 @@ function ref_frame(frame)
     Sprime_diagrams_title = "Spacetime Diagrams for Stationary Shell Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
     Sdblprime_diagrams_title = "Spacetime Diagrams for Far-Away Bookkeeper (Schwarzschild Frame)"; $i("Sdblprime_diagrams_span").title = Sdblprime_diagrams_title;
 		$i("speed_span").title = "v = speed space is moving past the stationary Light Clock\n[Click value to change it]]";
-		//centeredButton(true);
+		centeredButton(true);
 	}
   setTime(ref, frame); ref = frame; if (paused) setCurrentTime();
 }
@@ -2825,7 +2825,7 @@ function mouseDblClick()
 
 function control_input(target)
 {
-  return(target.type=='button' || target.type=='checkbox' || target.type=='radio' || target.type=='range');
+  return(target.type=='submit' || target.type=='button' || target.type=='checkbox' || target.type=='radio' || target.type=='range');
 }
 
 function atEvent(E)
