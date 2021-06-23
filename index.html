@@ -86,7 +86,7 @@
         <button title="Zoom Out" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
         onmousedown="holdButtonOn(100, function() {updateScale(scale*0.99);});" onmouseup="prev_scale = scale; holdButtonOff();" onmouseout="prev_scale = scale; holdButtonOff();"
         ontouchstart="holdButtonOn(100, function() {updateScale(scale*0.99);});" ontouchend="prev_scale = scale; holdButtonOff();" ontouchmove="prev_scale = scale; holdButtonOff();">-</button>
-        <button title="Undo Zooming" onmousedown="initScaling();" ontouchstart="initScaling();" style="font-weight:bold; text-align:center; padding:0px; width:30px;">0</button>
+        <button title="Undo Zooming" onmousedown="initScaling(); drawFrame();" ontouchstart="initScaling();" style="font-weight:bold; text-align:center; padding:0px; width:30px;">0</button>
         <button title="Zoom In" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
         onmousedown="holdButtonOn(100, function() {updateScale(scale*1.01);});" onmouseup="prev_scale = scale; holdButtonOff();" onmouseout="prev_scale = scale; holdButtonOff();"
         ontouchstart="holdButtonOn(100, function() {updateScale(scale*1.01);});" ontouchend="prev_scale = scale; holdButtonOff();" ontouchmove="prev_scale = scale; holdButtonOff();">+</button>
@@ -94,7 +94,7 @@
         <button title="Rotate Counter-Clockwise" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
         onmousedown="holdButtonOn(100, function() {calcRotation(-0.01); prev_theta = theta;});" onmouseup="holdButtonOff();" onmouseout="holdButtonOff();"
         ontouchstart="holdButtonOn(100, function() {calcRotation(-0.01); prev_theta = theta;});" ontouchend="holdButtonOff();" ontouchmove="holdButtonOff();">-</button>
-        <button title="Undo Rotation" onmousedown="initRotation();" ontouchstart="initRotation();" style="font-weight:bold; text-align:center; padding:0px; width:30px;">0</button>
+        <button title="Undo Rotation" onmousedown="initRotation(); drawFrame();" ontouchstart="initRotation();" style="font-weight:bold; text-align:center; padding:0px; width:30px;">0</button>
         <button title="Rotate Clockwise" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
         onmousedown="holdButtonOn(100, function() {calcRotation(0.01); prev_theta = theta;});" onmouseup="holdButtonOff();" onmouseout="prev_theta = theta; holdButtonOff();"
         ontouchstart="holdButtonOn(100, function() {calcRotation(0.01); prev_theta = theta;});" ontouchend="holdButtonOff();" ontouchmove="holdButtonOff();">+</button><br>
