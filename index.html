@@ -3,11 +3,11 @@
   <head>
 
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<!--    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5W68J24');</script>
+    })(window,document,'script','dataLayer','GTM-5W68J24');</script>-->
     <!-- End Google Tag Manager -->
 
     <title>LightClock</title>
@@ -16,7 +16,7 @@
     <meta name="description" content="Light Clock">
     <meta name="author" content="joekahr@gmail.com">
     <meta name="generator" content="Joe Kahr">
-    <meta name="version" content="17.2">
+    <meta name="version" content="17.3">
     <meta name="viewport" content="width=device-width,user-scalable=0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 	
     <style type="text/css">
@@ -64,8 +64,8 @@
   <body id="body" onload="init();" onresize="resize();" style="background-color:rgb(0,0,0)">
     
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W68J24"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!--    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W68J24"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>-->
     <!-- End Google Tag Manager (noscript) -->
 
     <canvas id="canvas" oncontextmenu="return false;" style="background-color:rgb(0, 0, 0); position:absolute; overflow:hidden; z-index:1; visibility:hidden;"></canvas>
@@ -95,27 +95,27 @@
           <span>&gamma; = </span><span id="gamma" style="font-family:cambria_math" onmousedown="gammaSpan();" ontouchend="gammaSpan();">1</span></span>&nbsp;&nbsp;
         <span id="r_span" title='r is the r-coordinate (reduced circumference) for a Schwarzschild geometry&#013;(in this animation r is a distance in x" coordinates)&#013;[Click value to change it]' style="padding:0px; font-family:cambria_math">
           <span>rc&sup2;/GM = </span><span style="font-family:cambria_math"><span id="r_reduced" onmousedown="rSpan();" ontouchend="rSpan();">&infin;</span></span></span><br>
-        <span title="Light Particles of Light Clock" id="Photons"><input id="photons_checkbox" type="checkbox">Photons</span>
-        <span title="Notation Explaining Animation" id="Annotation"><input id="annotation_checkbox" type="checkbox">Annotation</span>&nbsp;&nbsp;
+        <span title="Light Particles of Light Clock" id="Photons"><input id="photons_checkbox" type="checkbox" ontouchend="toggleCheckbox('photons_checkbox');">Photons</span>
+        <span title="Notation Explaining Animation" id="Annotation"><input id="annotation_checkbox" type="checkbox" ontouchend="toggleCheckbox('annotation_checkbox');">Annotation</span>&nbsp;&nbsp;
         <button title="Keep Light Clock in Center of Window" id="centered_button" type="button" style="font-weight:bold; text-align:center; padding:0px; width:105px;"
-          onmouseup="centeredButton(!centered);" ontouchend="centeredButton(!centered);">Center</button><br>
+          onmouseup="centeredButton(!centered); event.preventDefault();" ontouchend="centeredButton(!centered); event.preventDefault();">Center</button><br>
         <span title="Light Waves of Light Clock" id="waves">waves:</span>
-        <span title="Forward-in-Time Light Waves" id="Retarded"><input id="retarded_waves_checkbox" type="checkbox"  onmouseup="wavesCheckbox(true);" ontouchend="wavesCheckbox(true);">Retarded</span>
-        <span title="Backward-in-Time Light Waves" id="Advanced"><input id="advanced_waves_checkbox" type="checkbox" onmouseup="wavesCheckbox(false);" ontoiuchend="wavesCheckbox(false);">Advanced</span>
-        <span title="Geometry of Original and Reflected Waves" id="full_arcs_span"><input id="full_arcs_checkbox" type="checkbox">Full</span><br>
+        <span title="Forward-in-Time Light Waves" id="Retarded"><input id="retarded_waves_checkbox" type="checkbox" onmouseup="retwavesCheckbox(false);" ontouchend="retwavesCheckbox(true);">Retarded</span>
+        <span title="Backward-in-Time Light Waves" id="Advanced"><input id="advanced_waves_checkbox" type="checkbox" onmouseup="advwavesCheckbox(false);" ontouchend="advwavesCheckbox(true);">Advanced</span>
+        <span title="Geometry of Original and Reflected Waves" id="full_arcs_span"><input id="full_arcs_checkbox" type="checkbox" ontouchend="toggleCheckbox('full_arcs_checkbox');">Full</span><br>
         <span title="Grids of Spatial Coordinates" id="space">space:</span>
-        <span title="" id="S_grid_span"><input id="S_grid_checkbox" type="checkbox"><span style="color:lime; font-family:cambria_math">xy</span></span>
-        <span title="" id="Sprime_grid_span"><input id="Sprime_grid_checkbox" type="checkbox"><span style="color:cyan; font-family:cambria_math">x'y'</span></span>
-        <span title='Grid of Far-Away Bookkeeper (Schwarzschild Frame) x"y" Coordinates' id="Sdblprime_grid_span"><input id="Sdblprime_grid_checkbox" type="checkbox"><span style="color:orange; font-family:cambria_math">x"y"</span></span><br>
+        <span title="" id="S_grid_span"><input id="S_grid_checkbox" type="checkbox" ontouchend="toggleCheckbox('S_grid_checkbox');"><span style="color:lime; font-family:cambria_math">xy</span></span>
+        <span title="" id="Sprime_grid_span"><input id="Sprime_grid_checkbox" type="checkbox" ontouchend="toggleCheckbox('Sprime_checkbox');"><span style="color:cyan; font-family:cambria_math">x'y'</span></span>
+        <span title='Grid of Far-Away Bookkeeper (Schwarzschild Frame) x"y" Coordinates' id="Sdblprime_grid_span"><input id="Sdblprime_grid_checkbox" type="checkbox" ontouchend="toggleCheckbox('Sdblprime_grid_checkbox');"><span style="color:orange; font-family:cambria_math">x"y"</span></span><br>
         <span title="Grids of Time Coordinates" id="time">time:</span>
-        <span title="" id="S_clocks_span"><input id="S_clocks_checkbox" type="checkbox"><span style="color:lime; font-family:cambria_math">t</span></span>
-        <span title="" id="Sprime_clocks_span"><input id="Sprime_clocks_checkbox" type="checkbox"><span style="color:cyan; font-family:cambria_math">t'</span></span>
-        <span title='Grid of Far-Away Bookkeeper (Schwarzschild Frame) t" Clocks' id="Sdblprime_clocks_span" ><input id="Sdblprime_clocks_checkbox" type="checkbox"><span style="color:orange; font-family:cambria_math">t"</span></span>
-        <span title='Lattice of Mini Light Clocks (10x)' id="mini_light_clocks"><input id="mini_light_clocks_checkbox" type="checkbox"><span style="color:white">mini light clocks</span></span><br>
+        <span title="" id="S_clocks_span"><input id="S_clocks_checkbox" type="checkbox" ontouchend="toggleCheckbox('S_clocks_checkbox');"><span style="color:lime; font-family:cambria_math">t</span></span>
+        <span title="" id="Sprime_clocks_span"><input id="Sprime_clocks_checkbox" type="checkbox" ontouchend="toggleCheckbox('Sprime_clocks_checkbox');"><span style="color:cyan; font-family:cambria_math">t'</span></span>
+        <span title='Grid of Far-Away Bookkeeper (Schwarzschild Frame) t" Clocks' id="Sdblprime_clocks_span" ><input id="Sdblprime_clocks_checkbox" type="checkbox" ontouchend="toggleCheckbox('Sdblprime_clocks_checkbox');"><span style="color:orange; font-family:cambria_math">t"</span></span>
+        <span title='Lattice of Mini Light Clocks (10x)' id="mini_light_clocks"><input id="mini_light_clocks_checkbox" type="checkbox" ontouchend="toggleCheckbox('mini_light_clocks_checkbox');"><span style="color:white">mini light clocks</span></span><br>
         <span title="Spacetime Diagrams for Light Clock photons" id="diagrams">diagrams:</span>
-        <span title="" id="S_diagrams_span"><input id="S_diagrams" type="checkbox"><span style="color:lime">S</span></span>
-        <span title="" id="Sprime_diagrams_span"><input id="Sprime_diagrams" type="checkbox"><span style="color:cyan">S'</span></span>
-        <span title="Spacetime Diagrams for Far-Away Bookkeeper (Schwarzschild Frame)" id="Sdblprime_diagrams_span"><input id="Sdblprime_diagrams" type="checkbox"><span style="color:orange">S"</span></span><br>
+        <span title="" id="S_diagrams_span"><input id="S_diagrams" type="checkbox" ontouchend="toggleCheckbox('S_diagrams');"><span style="color:lime">S</span></span>
+        <span title="" id="Sprime_diagrams_span"><input id="Sprime_diagrams" type="checkbox" ontouchend="toggleCheckbox('Sprime_diagrams');"><span style="color:cyan">S'</span></span>
+        <span title="Spacetime Diagrams for Far-Away Bookkeeper (Schwarzschild Frame)" id="Sdblprime_diagrams_span"><input id="Sdblprime_diagrams" type="checkbox" ontouchend="toggleCheckbox('Sdblprime_diagrams');"><span style="color:orange">S"</span></span><br>
         <span title="x-t diagram for photons moving left and right" id="XT_span" style="font-family:cambria_math"><input id="XT_button" type="radio" name="diagram"
           onmouseup="$i('XT_button').checked = true; clearEvents();" ontouchend="$i('XT_button').checked = true; clearEvents();"><span>&harr; xt</span></span>
         <span title="x-t diagram for upward moving photon" id="XT_Yplus_span" style="font-family:cambria_math"><input id="XT_Yplus_button" type="radio" name="diagram"
@@ -126,11 +126,15 @@
           onmouseup="$i('YT_button').checked = true; clearEvents();" ontouchend="$i('YT_button').checked = true; clearEvents();"><span>&#x2195; yt</span></span><br>
         <span title="Change Animation Scale" id="zoom">zoom:</span>
         <button title="Zoom Out" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
-          ontouchstart="holdButtonOn(100, function() {updateScale(scale*0.99);});" ontouchend="prev_scale = scale; holdButtonOff();" ontouchmove="prev_scale = scale; holdButtonOff();"
+          ontouchstart="event.preventDefault(); holdButtonOn(100, function() {updateScale(scale*0.99);});"
+          ontouchend="event.preventDefault(); prev_scale = scale; holdButtonOff();"
+          ontouchmove=" event.preventDefault(); prev_scale = scale; holdButtonOff();"
           onmousedown="holdButtonOn(100, function() {updateScale(scale*0.99);});" onmouseup="prev_scale = scale; holdButtonOff();" onmouseout="prev_scale = scale; holdButtonOff();">-</button>
         <button title="Undo Zooming" onmousedown="initScaling(); drawFrame();" style="font-weight:bold; text-align:center; padding:0px; width:30px;">0</button>
         <button title="Zoom In" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
-          ontouchstart="holdButtonOn(100, function() {updateScale(scale*1.01);});" ontouchend="prev_scale = scale; holdButtonOff();" ontouchmove="prev_scale = scale; holdButtonOff();"
+          ontouchstart="event.preventDefault(); holdButtonOn(100, function() {updateScale(scale*1.01);});"
+          ontouchend="event.preventDefault(); prev_scale = scale; holdButtonOff();"
+          ontouchmove="event.preventDefault(); prev_scale = scale; holdButtonOff();"
           onmousedown="holdButtonOn(100, function() {updateScale(scale*1.01);});" onmouseup="prev_scale = scale; holdButtonOff();" onmouseout="prev_scale = scale; holdButtonOff();">+</button>
         <span title="Change Angle of Light Clock Mirrors" id="rotate">rotate:</span>
         <button title="Rotate Counter-Clockwise" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
@@ -138,7 +142,9 @@
           onmousedown="holdButtonOn(100, function() {calcRotation(-0.01); prev_theta = theta;});" onmouseup="holdButtonOff();" onmouseout="holdButtonOff();">-</button>
         <button title="Undo Rotation" onmousedown="initRotation(); drawFrame();" style="font-weight:bold; text-align:center; padding:0px; width:30px;">0</button>
         <button title="Rotate Clockwise" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
-          ontouchstart="holdButtonOn(100, function() {calcRotation(0.01); prev_theta = theta;});" ontouchend="holdButtonOff();" ontouchmove="holdButtonOff();"
+          ontouchstart="event.preventDefault(); holdButtonOn(100, function() {calcRotation(0.01); prev_theta = theta;});"
+          ontouchend="event.preventDefault(); holdButtonOff();"
+          ontouchmove="event.preventDefault(); holdButtonOff();"
           onmousedown="holdButtonOn(100, function() {calcRotation(0.01); prev_theta = theta;});" onmouseup="holdButtonOff();" onmouseout="prev_theta = theta; holdButtonOff();">+</button><br>
         <span title="Change Animation Time Direction" id="timedirection">time direction:</span>
         <span title="Normal Time Progression" id="Forward"><input id="forward_button" type="radio" name="time_direction"
@@ -147,11 +153,11 @@
           onmouseup="delta_t = -Math.abs(delta_t); $i('backward_button').checked = true;" ontouchend="delta_t = -Math.abs(delta_t); $i('backward_button').checked = true;"><span>Backward</span></span><br>
       </span>
       <button id="slower_button" title="Slow Down the Animation 2x" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;"
-        onmouseup="steps_per_tick = steps_per_tick*2;" ontouchend="steps_per_tick = steps_per_tick*2;">Slower</button>
+        onmouseup="steps_per_tick = steps_per_tick*2;" ontouchend="event.preventDefault(); steps_per_tick = steps_per_tick*2;">Slower</button>
       <button id="faster_button" title="Speed Up the Animation 2x" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;"
-        onmouseup="steps_per_tick = steps_per_tick/2;" ontouchend="steps_per_tick = steps_per_tick/2;">Faster</button>
+        onmouseup="steps_per_tick = steps_per_tick/2;" ontouchend="event.preventDefault(); steps_per_tick = steps_per_tick/2;">Faster</button>
       <button id="reset_button" title="Reset the Animation" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;"
-        onmouseup="reset();" ontouchend="reset();">Reset</button>
+        onmouseup="reset();" ontouchend="event.preventDefault(); reset();">Reset</button>
 			&nbsp;
 			<span id="current_time_span" onmousedown="get_t();">
         <span id="current_time_span1" style="font-family:cambria_math"></span>
@@ -159,33 +165,37 @@
 				<span id="current_time_span2"></span>
 			</span><br>
 			<button id="exit_button" title="Exit the Animation" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;"
-        onmouseup="return_to_start(); stop(); init();" ontouchend="return_to_start(); stop(); init();">Exit</button>
+        onmouseup="return_to_start(); stop(); init();" ontouchend="event.preventDefault(); return_to_start(); stop(); init();">Exit</button>
       <button id="pause_resume_button" title="Pause the Animation" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;"
-        onmouseup="pause_resumeButton();" ontouchend="pause_resumeButton();">Pause</button>
+        onmouseup="pause_resumeButton();" ontouchend="event.preventDefault(); pause_resumeButton();">Pause</button>
       <span id="single_steps">
         <span title="While Animation is Paused, Step to Previous/Next Time Slice" id="single_step">single step:</span>
         <button id="stepbackward_button" title="Step Animation Backward One Time Unit" type="button" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
         onmousedown="holdButtonOn(200, function() {step(false); setCurrentTime();});" onmouseup="holdButtonOff();" onmouseout="holdButtonOff();"
-        ontouchstart="holdButtonOn(200, function() {step(false); setCurrentTime();});" ontouchend="holdButtonOff();" ontouchmove="holdButtonOff();">-</button>
+        ontouchstart="event.preventDefault(); holdButtonOn(200, function() {step(false); setCurrentTime();});"
+        ontouchend="event.preventDefault(); holdButtonOff();"
+        ontouchmove="event.preventDefault(); holdButtonOff();">-</button>
         <button id="stepforward_button" title="Step Animation Forward One Time Unit" type="button" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
         onmousedown="holdButtonOn(200, function() {step(true); setCurrentTime();});" onmouseup="holdButtonOff();" onmouseout="holdButtonOff();"
-        ontouchstart="holdButtonOn(200, function() {step(true); setCurrentTime();});" ontouchend="holdButtonOff();" ontouchmove="holdButtonOff();">+</button>
+        ontouchstart="event.preventDefault(); holdButtonOn(200, function() {step(true); setCurrentTime();});"
+        ontouchend="event.preventDefault(); holdButtonOff();"
+        ontouchmove="event.preventDefault(); holdButtonOff();">+</button>
       </span><br>
       <span id="coordinates">
         <span title="Spacetime Events Coordinates and Interval" id="Events"><input id="coord_checkbox" type="checkbox">Events:</span>&nbsp;
         <span id="coord_buttons">
           <span title="Spacetime Event A" id="A_event" style="font-family:Arial,Helvetica,sans-serif; font-size:14pt;">A</span>
           <button id="set_E1" title="Define Position and Time of Event A" type="button" style="width:40px; vertical-align:middle; text-align:center; padding:0px; font-weight:bold;"
-            onmouseup="E1_setting = true; E2_setting = false; show_E_setting('A');" ontouchend="E1_setting = true; E2_setting = false; show_E_setting('A');">Set</button>
+            onmouseup="E1_setting = true; E2_setting = false; show_E_setting('A');" ontouchend="event.preventDefault(); E1_setting = true; E2_setting = false; show_E_setting('A');">Set</button>
           <button id="gotoE1_button" title="Jump to Time of Event A" type="button" style="width:48px; vertical-align:middle; text-align:center; padding:0px; font-weight:bold;"
             onmouseup="if (refSdblprime()) {t = E1.t_dblprime;} else if (refSprime()) {t = E1.t_prime;} else {t = E1.t;} calcTime(); drawFrame();"
-            ontouchend="if (refSdblprime()) {t = E1.t_dblprime;} else if (refSprime()) {t = E1.t_prime;} else {t = E1.t;} calcTime(); drawFrame();">GoTo</button>
+            ontouchend="event.preventDefault(); if (refSdblprime()) {t = E1.t_dblprime;} else if (refSprime()) {t = E1.t_prime;} else {t = E1.t;} calcTime(); drawFrame();">GoTo</button>
           <span title="Spacetime Event B" id="B_event" style="font-family:Arial,Helvetica,sans-serif; font-size:14pt;">B</span>
           <button id="set_E2" title="Define Position and Time of Event B" type="button" style="width:40px; vertical-align:middle; padding:0; font-weight:bold;"
             onmouseup="E2_setting = true; E1_setting = false; show_E_setting('B');" ontouchend="E2_setting = true; E1_setting = false; show_E_setting('B');">Set</button>
           <button id="gotoE2_button" title="Jump to Time of Event B" type="button" style="width:48px; vertical-align:middle; padding:0; font-weight:bold;"
             onmouseup="if (refSdblprime()) {t = E2.t_dblprime;} else if (refSprime()) {t = E2.t_prime;} else {t = E2.t;} calcTime(); drawFrame();"
-            ontouchend="if (refSdblprime()) {t = E2.t_dblprime;} else if (refSprime()) {t = E2.t_prime;} else {t = E2.t;} calcTime(); drawFrame();">GoTo</button><br>
+            ontouchend="event.preventDefault(); if (refSdblprime()) {t = E2.t_dblprime;} else if (refSprime()) {t = E2.t_prime;} else {t = E2.t;} calcTime(); drawFrame();">GoTo</button><br>
           <span id="E_setting" style="color:red; text-indent:30px;"> </span><br>
         </span>
       </span>
@@ -2940,8 +2950,8 @@ function centeredButton(centered_value)
 	if (!centered)
 	{
     offset_y = 0;
-    if (refSdblprime())  {offset_x = -v*t/(gamma*gamma);}  // t is S"
-    else                  {offset_x = -v*t;}
+    if (refSdblprime()) {offset_x = -v*t/(gamma*gamma);}  // t is S"
+    else                {offset_x = -v*t;}
     offset_x_down = offset_x; offset_y_down = offset_y;
 	}
   else {offset_x = 0; offset_y = 0;}
@@ -2955,19 +2965,33 @@ function rSpan()		{if (get_r()) {reset();}}
 
 // checkboxes
 
-function wavesCheckbox(retarded)
+function toggleCheckbox(id)
 {
-	if (retarded) {retarded_waves = !$i("retarded_waves_checkbox").checked;}
-	else {advanced_waves = !$i("advanced_waves_checkbox").checked;}
+  $i(id).checked = !$i(id).checked;
+  drawFrame();
+}
+
+function advwavesCheckbox(touch)
+{
+	advanced_waves = !$i("advanced_waves_checkbox").checked;
 	$i('full_arcs_checkbox').disabled = (!retarded_waves) && (!advanced_waves);
+  if (touch) $i("advanced_waves_checkbox").checked = advanced_waves;
+  drawFrame();
+}
+
+function retwavesCheckbox(touch)
+{
+	retarded_waves = !$i("retarded_waves_checkbox").checked;
+	$i('full_arcs_checkbox').disabled = (!retarded_waves) && (!advanced_waves);
+  if (touch) $i("retarded_waves_checkbox").checked = retarded_waves;
   drawFrame();
 }
 
 // event handlers
 
-function mouseClick()
+function mouseClick(event)
 {
-	if (!started || control_input(event.target)) return;
+	if (!started || control_input(event)) return;
   if (E1_setting || E1_dragging || E2_setting || E2_dragging) return;
   if ((P_mouseup.X == prev_P_mouseup.X) || (P_mouseup.Y == prev_P_mouseup.Y)) return;
   if ((Math.abs(P_mouseup.X - P_mousedown.X) > 0) || (Math.abs(P_mouseup.Y - P_mousedown.Y) > 0)) return;
@@ -2984,9 +3008,10 @@ function mouseClick()
 	drawFrame();
 }
 
-function control_input(target)
+function control_input(event)
 {
-  return(target.type=='submit' || target.type=='button' || target.type=='checkbox' || target.type=='radio' || target.type=='range');
+  if (event.target.id == "canvas") return(false);
+  return(event.target.type=='submit' || targetType(event,"button") || targetType(event,"radio") || targetType(event,"checkbox") || event.target.type=='range');
 }
 
 function atEvent(E)
@@ -3010,7 +3035,7 @@ function updateScale(newscale)
 
 function mouseDown(event)
 {
-	if (!started || control_input(event.target)) return;
+	if (!started || control_input(event)) return;
 	P_mousedown.X = event.pageX; P_mousedown.Y = event.pageY;
 	if		  ((E1_setting || atEvent(E1)) && paused) {E1_dragging = true; E1set = true; inherit('gotoE1_button');}
 	else if ((E2_setting || atEvent(E2)) && paused) {E2_dragging = true; E2set = true; inherit('gotoE2_button');}
@@ -3024,7 +3049,7 @@ function mouseDown(event)
 }
 function mouseMove(event)
 {
-    if (!started || control_input(event.target)) return;
+    if (!started || control_input(event)) return;
     P_mousemove.X = event.pageX; P_mousemove.Y = event.pageY;
     if (dragging && !gesture && started) 	    
     {
@@ -3044,14 +3069,14 @@ function mouseMove(event)
 }
 function mouseUp(event)
 {
-  if (!started || control_input(event.target)) return;
+  if (!started || control_input(event)) return;
   P_mouseup.X = event.pageX; P_mouseup.Y = event.pageY;
   if (dragging) {dragging = false;}
   else if (scaling_and_rotating) {scaling_and_rotating = false; prev_scale = scale; prev_theta = theta;}
 	else if (E1_dragging) {setEvent(E1,t,X_to_x(P_mouseup.X),Y_to_y(P_mouseup.Y)); hide_E_setting(); drawFrame(); E1_dragging = false; E1_setting = false; prev_P_mouseup.X = P_mouseup.X; prev_P_mouseup.Y = P_mouseup.Y;}
 	else if (E2_dragging) {setEvent(E2,t,X_to_x(P_mouseup.X),Y_to_y(P_mouseup.Y)); hide_E_setting(); drawFrame(); E2_dragging = false; E2_setting = false; prev_P_mouseup.X = P_mouseup.X; prev_P_mouseup.Y = P_mouseup.Y;}
-	if ((P_mouseup.X == P_mousedown.X) && (P_mouseup.Y == P_mousedown.Y) && !control_input(event.target))
-    {mouseClick(); prev_P_mouseup.X = 0; prev_P_mouseup.Y = 0;}
+	if ((P_mouseup.X == P_mousedown.X) && (P_mouseup.Y == P_mousedown.Y) && !control_input(event))
+    {mouseClick(event); prev_P_mouseup.X = 0; prev_P_mouseup.Y = 0;}
   else {prev_P_mouseup.X = P_mouseup.X; prev_P_mouseup.Y = P_mouseup.Y;}
 }
 
@@ -3095,7 +3120,7 @@ function gestureChange(event)
 }
 function gestureEnd() { if (started) {gesture = false; prev_scale = scale; prev_theta = theta; } }
 
-function targetType(event,value) { return(event.target.type == value || event.target.parentElement.type == value); }
+function targetType(event,value) { return(event.target.type == value); }
 
 function is_touch_enabled() {
     return ( 'ontouchstart' in window ) ||
@@ -3106,9 +3131,9 @@ function is_touch_enabled() {
 function buttonClick(event)
 {
 	if (is_touch_enabled())
-		return (event.type == "touchstart") && (targetType(event,"button") || targetType(event,"radio") || targetType(event,"checkbox"));
+		return (event.type == "touchstart") && ((targetType(event,"button") || targetType(event,"radio") || targetType(event,"checkbox")));
 	else
-		return (event.type == "click")      && (targetType(event,"button") || targetType(event,"radio") || targetType(event,"checkbox"));
+		return (event.type == "click")      && ((targetType(event,"button") || targetType(event,"radio") || targetType(event,"checkbox")));
 }
 
 function diagram_disable()
@@ -3199,12 +3224,12 @@ canvas.addEventListener("mouseup",        mouseUp,        {capture:false, passiv
 
 controls = $i('controls');
 controls.addEventListener("change",       change,         {capture:false, passive:false});
-controls.addEventListener("touchstart",   touchStart,     {capture:false, passive:false});
-controls.addEventListener("touchmove",    touchMove,      {capture:false, passive:false});
-controls.addEventListener("touchend",     touchEnd,       {capture:false, passive:false});
-controls.addEventListener("mousedown",    mouseDown,      {capture:false, passive:false});
-controls.addEventListener("mousemove",    mouseMove,      {capture:false, passive:false});
-controls.addEventListener("mouseup",      mouseUp,        {capture:false, passive:false});
+//controls.addEventListener("touchstart",   touchStart,     {capture:false, passive:false});
+//controls.addEventListener("touchmove",    touchMove,      {capture:false, passive:false});
+//controls.addEventListener("touchend",     touchEnd,       {capture:false, passive:false});
+//controls.addEventListener("mousedown",    mouseDown,      {capture:false, passive:false});
+//controls.addEventListener("mousemove",    mouseMove,      {capture:false, passive:false});
+//controls.addEventListener("mouseup",      mouseUp,        {capture:false, passive:false});
 
     </script>
   </body>
