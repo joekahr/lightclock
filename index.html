@@ -7,8 +7,8 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5W68J24');</script>-->
-    <!-- End Google Tag Manager 
+    })(window,document,'script','dataLayer','GTM-5W68J24');</script>
+    <!-- End Google Tag Manager -->
 
     <title>LightClock</title>
 
@@ -16,13 +16,15 @@
     <meta name="description" content="Light Clock">
     <meta name="author" content="joekahr@gmail.com">
     <meta name="generator" content="Joe Kahr">
-    <meta name="version" content="17.3">
+    <meta name="version" content="17.7">
     <meta name="viewport" content="width=device-width,user-scalable=0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 	
     <style type="text/css">
 			canvas {background-color:rgba(0,0,0,0); overflow:hidden}
 			body  {margin:0; padding:0}
 			td, th {padding:2px}
+      * {-webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */}
       input[type=range] {-webkit-appearance: none;  -moz-appearance: none;}
       input[type=checkbox]
         {
@@ -65,137 +67,95 @@
     
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W68J24"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>-->
-    <!-- End Google Tag Manager (noscript) 
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-    <canvas id="canvas" oncontextmenu="return false;" style="background-color:rgb(0, 0, 0); position:absolute; overflow:hidden; z-index:1; visibility:hidden;"></canvas>
+    <canvas id="canvas" style="background-color:rgb(0, 0, 0); position:absolute; overflow:hidden; z-index:1; visibility:hidden;"></canvas>
         
     <div id="controls" style="font-family:Arial,Helvetica,sans-serif; background-color:rgba(0,0,0,0); margin-top:auto; margin-bottom:auto; position:absolute; color:rgb(255,255,255); font-size:large; z-index:2; visibility:hidden;">
 		  <span id="controls_part1">
         <span style="font-family:cambria_math">D = </span>proper distance between mirrors<br>
         <span style="font-family:cambria_math">T = </span>proper light clock period<span style="font-family:cambria_math"> = D/c</span><br>
         <span title="Special Relativity Reference Frames" id="SR">SR:</span>
-        <span title="Special Relativity: Laboratory Frame S" id="Lab"><input id="SR_lab_button" type="radio" name="reference" onmouseup="ref_frame('SR_lab');" ontouchend="ref_frame('SR_lab');"><span style="color:lime">Lab</span></span>
-        <span title="Special Relativity: Rocket Frame S'" id="Rocket"><input id="SR_rocket_button" type="radio" name="reference" onmouseup="ref_frame('SR_rocket');" ontouchend="ref_frame('SR_rocket');"><span style="color:cyan">Rocket</span></span><br>
+        <span title="Special Relativity: Laboratory Frame S" id="Lab"><input id="SR_lab_button" type="radio" name="reference"><span style="color:lime">Lab</span></span>
+        <span title="Special Relativity: Rocket Frame S'" id="Rocket"><input id="SR_rocket_button" type="radio" name="reference"><span style="color:cyan">Rocket</span></span><br>
         <span title="General Relativity Reference Frames" id="GR">GR:</span>
-        <span title="General Relativity: Free-Falling Rain Frame S" id="Rain"><input id="GR_rain_button" type="radio" name="reference" onmouseup="ref_frame('GR_rain')" ontouchend="ref_frame('GR_rain')"><span style="color:lime">Rain</span></span>
-        <span title="General Relativity: Stationary Shell Frame S'" id="Shell"><input id="GR_shell_button" type="radio" name="reference" onmouseup="ref_frame('GR_shell')" ontouchend="ref_frame('GR_shell')"><span style="color:cyan">Shell</span></span>
-        <span title='General Relativity: Far-Away Bookkeeper Frame S"' id="Far"><input id="GR_far_button" type="radio" name="reference" onmouseup="ref_frame('GR_far')" onmtouchend="ref_frame('GR_far')"><Span style="color:orange">Far</span></span><br>
+        <span title="General Relativity: Free-Falling Rain Frame S" id="Rain"><input id="GR_rain_button" type="radio" name="reference"><span style="color:lime">Rain</span></span>
+        <span title="General Relativity: Stationary Shell Frame S'" id="Shell"><input id="GR_shell_button" type="radio" name="reference"><span style="color:cyan">Shell</span></span>
+        <span title='General Relativity: Far-Away Bookkeeper Frame S"' id="Far"><input id="GR_far_button" type="radio" name="reference"><span style="color:orange">Far</span></span><br>
         <span title="Relative Light Clock Speed v&#013;(-c < v < c)" id="SpeedSlider"">
           <span style="font-family:cambria_math">speed (v): -c</span>
           <input id="speed_range" type="range" min="-1000" max="1000" value="0" class="slider"
-          style="background:rgb(126,126,126); width:210px; height:10px; vertical-align:middle"
-          ontouchstart="speed_slider=true;" ontouchmove="speed_change();" ontouchend="speed_change(); speed_slider=false;"
-          onmousedown="speed_slider=true;"  onmousemove="speed_change();" onmouseup="speed_change();  speed_slider=false;"><span style="font-family:cambria_math">c</span>
+          style="background:rgb(126,126,126); width:210px; height:10px; vertical-align:middle"><span style="font-family:cambria_math">c</span>
         </span><br>
         <span id="speed_span" title="" style="padding:0px; font-family:cambria_math">
-          <span>v/c = </span><span style="font-family:cambria_math"><span id="v_over_c" onmousedown="speedSpan();" ontouchend="speedSpan();">0</span></span>
+          <span>v/c = </span><span style="font-family:cambria_math"><span id="v_over_c">0</span></span>
         </span>&nbsp;&nbsp;
         <span id="gamma_span" title="gamma is the Lorentz factor: ratio for length contraction and time dilation&#013;[Click value to change it]" style="padding:0px; font-family:cambria_math">
-          <span>&gamma; = </span><span id="gamma" style="font-family:cambria_math" onmousedown="gammaSpan();" ontouchend="gammaSpan();">1</span></span>&nbsp;&nbsp;
+          <span>&gamma; = </span><span id="gamma" style="font-family:cambria_math">1</span></span>&nbsp;&nbsp;
         <span id="r_span" title='r is the r-coordinate (reduced circumference) for a Schwarzschild geometry&#013;(in this animation r is a distance in x" coordinates)&#013;[Click value to change it]' style="padding:0px; font-family:cambria_math">
-          <span>rc&sup2;/GM = </span><span style="font-family:cambria_math"><span id="r_reduced" onmousedown="rSpan();" ontouchend="rSpan();">&infin;</span></span></span><br>
-        <span title="Light Particles of Light Clock" id="Photons"><input id="photons_checkbox" type="checkbox" ontouchend="toggleCheckbox('photons_checkbox');">Photons</span>
-        <span title="Notation Explaining Animation" id="Annotation"><input id="annotation_checkbox" type="checkbox" ontouchend="toggleCheckbox('annotation_checkbox');">Annotation</span>&nbsp;&nbsp;
-        <button title="Keep Light Clock in Center of Window" id="centered_button" type="button" style="font-weight:bold; text-align:center; padding:0px; width:105px;"
-          onmouseup="centeredButton(!centered); event.preventDefault();" ontouchend="centeredButton(!centered); event.preventDefault();">Center</button><br>
+          <span>rc&sup2;/GM = </span><span style="font-family:cambria_math"><span id="r_reduced">&infin;</span></span></span><br>
+        <span title="Light Particles of Light Clock" id="Photons"><input id="photons_checkbox" type="checkbox">Photons</span>
+        <span title="Notation Explaining Animation" id="Annotation"><input id="annotation_checkbox" type="checkbox">Annotation</span>&nbsp;&nbsp;
+        <button title="Keep Light Clock in Center of Window" id="centered_button" type="button" style="font-weight:bold; text-align:center; padding:0px; width:105px;">Center</button><br>
         <span title="Light Waves of Light Clock" id="waves">waves:</span>
-        <span title="Forward-in-Time Light Waves" id="Retarded"><input id="retarded_waves_checkbox" type="checkbox" onmouseup="retwavesCheckbox(false);" ontouchend="retwavesCheckbox(true);">Retarded</span>
-        <span title="Backward-in-Time Light Waves" id="Advanced"><input id="advanced_waves_checkbox" type="checkbox" onmouseup="advwavesCheckbox(false);" ontouchend="advwavesCheckbox(true);">Advanced</span>
-        <span title="Geometry of Original and Reflected Waves" id="full_arcs_span"><input id="full_arcs_checkbox" type="checkbox" ontouchend="toggleCheckbox('full_arcs_checkbox');">Full</span><br>
+        <span title="Forward-in-Time Light Waves" id="Retarded"><input id="retarded_waves_checkbox" type="checkbox">Retarded</span>
+        <span title="Backward-in-Time Light Waves" id="Advanced"><input id="advanced_waves_checkbox" type="checkbox">Advanced</span>
+        <span title="Geometry of Original and Reflected Waves" id="Full"><input id="full_arcs_checkbox" type="checkbox">Full</span><br>
         <span title="Grids of Spatial Coordinates" id="space">space:</span>
-        <span title="" id="S_grid_span"><input id="S_grid_checkbox" type="checkbox" ontouchend="toggleCheckbox('S_grid_checkbox');"><span style="color:lime; font-family:cambria_math">xy</span></span>
-        <span title="" id="Sprime_grid_span"><input id="Sprime_grid_checkbox" type="checkbox" ontouchend="toggleCheckbox('Sprime_checkbox');"><span style="color:cyan; font-family:cambria_math">x'y'</span></span>
-        <span title='Grid of Far-Away Bookkeeper (Schwarzschild Frame) x"y" Coordinates' id="Sdblprime_grid_span"><input id="Sdblprime_grid_checkbox" type="checkbox" ontouchend="toggleCheckbox('Sdblprime_grid_checkbox');"><span style="color:orange; font-family:cambria_math">x"y"</span></span><br>
+        <span title="" id="S_grid_span"><input id="S_grid_checkbox" type="checkbox"><span style="color:lime; font-family:cambria_math">xy</span></span>
+        <span title="" id="Sprime_grid_span"><input id="Sprime_grid_checkbox" type="checkbox"><span style="color:cyan; font-family:cambria_math">x'y'</span></span>
+        <span title='Grid of Far-Away Bookkeeper (Schwarzschild Frame) x"y" Coordinates' id="Sdblprime_grid_span"><input id="Sdblprime_grid_checkbox" type="checkbox"><span style="color:orange; font-family:cambria_math">x"y"</span></span><br>
         <span title="Grids of Time Coordinates" id="time">time:</span>
-        <span title="" id="S_clocks_span"><input id="S_clocks_checkbox" type="checkbox" ontouchend="toggleCheckbox('S_clocks_checkbox');"><span style="color:lime; font-family:cambria_math">t</span></span>
-        <span title="" id="Sprime_clocks_span"><input id="Sprime_clocks_checkbox" type="checkbox" ontouchend="toggleCheckbox('Sprime_clocks_checkbox');"><span style="color:cyan; font-family:cambria_math">t'</span></span>
-        <span title='Grid of Far-Away Bookkeeper (Schwarzschild Frame) t" Clocks' id="Sdblprime_clocks_span" ><input id="Sdblprime_clocks_checkbox" type="checkbox" ontouchend="toggleCheckbox('Sdblprime_clocks_checkbox');"><span style="color:orange; font-family:cambria_math">t"</span></span>
-        <span title='Lattice of Mini Light Clocks (10x)' id="mini_light_clocks"><input id="mini_light_clocks_checkbox" type="checkbox" ontouchend="toggleCheckbox('mini_light_clocks_checkbox');"><span style="color:white">mini light clocks</span></span><br>
+        <span title="" id="S_clocks_span"><input id="S_clocks_checkbox" type="checkbox"><span style="color:lime; font-family:cambria_math">t</span></span>
+        <span title="" id="Sprime_clocks_span"><input id="Sprime_clocks_checkbox" type="checkbox"><span style="color:cyan; font-family:cambria_math">t'</span></span>
+        <span title='Grid of Far-Away Bookkeeper (Schwarzschild Frame) t" Clocks' id="Sdblprime_clocks_span" ><input id="Sdblprime_clocks_checkbox" type="checkbox"><span style="color:orange; font-family:cambria_math">t"</span></span>
+        <span title='Lattice of Mini Light Clocks (10x)' id="mini_lightclocks"><input id="mini_lightclocks_checkbox" type="checkbox"><span style="color:white">mini light clocks</span></span><br>
         <span title="Spacetime Diagrams for Light Clock photons" id="diagrams">diagrams:</span>
-        <span title="" id="S_diagrams_span"><input id="S_diagrams" type="checkbox" ontouchend="toggleCheckbox('S_diagrams');"><span style="color:lime">S</span></span>
-        <span title="" id="Sprime_diagrams_span"><input id="Sprime_diagrams" type="checkbox" ontouchend="toggleCheckbox('Sprime_diagrams');"><span style="color:cyan">S'</span></span>
-        <span title="Spacetime Diagrams for Far-Away Bookkeeper (Schwarzschild Frame)" id="Sdblprime_diagrams_span"><input id="Sdblprime_diagrams" type="checkbox" ontouchend="toggleCheckbox('Sdblprime_diagrams');"><span style="color:orange">S"</span></span><br>
-        <span title="x-t diagram for photons moving left and right" id="XT_span" style="font-family:cambria_math"><input id="XT_button" type="radio" name="diagram"
-          onmouseup="$i('XT_button').checked = true; clearEvents();" ontouchend="$i('XT_button').checked = true; clearEvents();"><span>&harr; xt</span></span>
-        <span title="x-t diagram for upward moving photon" id="XT_Yplus_span" style="font-family:cambria_math"><input id="XT_Yplus_button" type="radio" name="diagram"
-          onmouseup="$i('XT_Yplus_button').checked = true; clearEvents();" ontouchend="$i('XT_Yplus_button').checked = true; clearEvents();"><span>&uarr; xt</span></span>
-        <span title="x-t diagram for downward moving photon" id="XT_Yminus_span" style="font-family:cambria_math"><input id="XT_Yminus_button" type="radio" name="diagram"
-          onmouseup="$i('XT_Yminus_button').checked = true; clearEvents();" ontouchend="$i('XT_Yminus_button').checked = true; clearEvents();"><span>&darr; xt</span></span>
-        <span title="y-t diagram for photons moving up and down" id="YT_span" style="font-family:cambria_math"><input id="YT_button" type="radio" name="diagram"
-          onmouseup="$i('YT_button').checked = true; clearEvents();" ontouchend="$i('YT_button').checked = true; clearEvents();"><span>&#x2195; yt</span></span><br>
+        <span title="" id="S_diagrams_span"><input id="S_diag_checkbox" type="checkbox"><span style="color:lime">S</span></span>
+        <span title="" id="Sprime_diagrams_span"><input id="Sprime_diag_checkbox" type="checkbox"><span style="color:cyan">S'</span></span>
+        <span title="Spacetime Diagrams for Far-Away Bookkeeper (Schwarzschild Frame)" id="Sdblprime_diagrams_span"><input id="Sdblprime_diag_checkbox" type="checkbox"><span style="color:orange">S"</span></span><br>
+        <span title="x-t diagram for photons moving left and right" id="XT_span" style="font-family:cambria_math"><input id="XT_button" type="radio" name="diagram"><span>&harr; xt</span></span>
+        <span title="x-t diagram for upward moving photon" id="XT_Yplus_span" style="font-family:cambria_math"><input id="XT_Yplus_button" type="radio" name="diagram"><span>&uarr; xt</span></span>
+        <span title="x-t diagram for downward moving photon" id="XT_Yminus_span" style="font-family:cambria_math"><input id="XT_Yminus_button" type="radio" name="diagram"><span>&darr; xt</span></span>
+        <span title="y-t diagram for photons moving up and down" id="YT_span" style="font-family:cambria_math"><input id="YT_button" type="radio" name="diagram"><span>&#x2195; yt</span></span><br>
         <span title="Change Animation Scale" id="zoom">zoom:</span>
-        <button title="Zoom Out" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
-          ontouchstart="event.preventDefault(); holdButtonOn(100, function() {updateScale(scale*0.99);});"
-          ontouchend="event.preventDefault(); prev_scale = scale; holdButtonOff();"
-          ontouchmove=" event.preventDefault(); prev_scale = scale; holdButtonOff();"
-          onmousedown="holdButtonOn(100, function() {updateScale(scale*0.99);});" onmouseup="prev_scale = scale; holdButtonOff();" onmouseout="prev_scale = scale; holdButtonOff();">-</button>
-        <button title="Undo Zooming" onmousedown="initScaling(); drawFrame();" style="font-weight:bold; text-align:center; padding:0px; width:30px;">0</button>
-        <button title="Zoom In" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
-          ontouchstart="event.preventDefault(); holdButtonOn(100, function() {updateScale(scale*1.01);});"
-          ontouchend="event.preventDefault(); prev_scale = scale; holdButtonOff();"
-          ontouchmove="event.preventDefault(); prev_scale = scale; holdButtonOff();"
-          onmousedown="holdButtonOn(100, function() {updateScale(scale*1.01);});" onmouseup="prev_scale = scale; holdButtonOff();" onmouseout="prev_scale = scale; holdButtonOff();">+</button>
+        <button title="Zoom Out" id="zoom_out_button" style="font-weight:bold; text-align:center; padding:0px; width:30px;">-</button>
+        <button title="Undo Zooming" id="zoom_zero_button" style="font-weight:bold; text-align:center; padding:0px; width:30px;">0</button>
+        <button title="Zoom In" id="zoom_in_button" style="font-weight:bold; text-align:center; padding:0px; width:30px;">+</button>
         <span title="Change Angle of Light Clock Mirrors" id="rotate">rotate:</span>
-        <button title="Rotate Counter-Clockwise" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
-          ontouchstart="holdButtonOn(100, function() {calcRotation(-0.01); prev_theta = theta;});" ontouchend="holdButtonOff();" ontouchmove="holdButtonOff();"
-          onmousedown="holdButtonOn(100, function() {calcRotation(-0.01); prev_theta = theta;});" onmouseup="holdButtonOff();" onmouseout="holdButtonOff();">-</button>
-        <button title="Undo Rotation" onmousedown="initRotation(); drawFrame();" style="font-weight:bold; text-align:center; padding:0px; width:30px;">0</button>
-        <button title="Rotate Clockwise" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
-          ontouchstart="event.preventDefault(); holdButtonOn(100, function() {calcRotation(0.01); prev_theta = theta;});"
-          ontouchend="event.preventDefault(); holdButtonOff();"
-          ontouchmove="event.preventDefault(); holdButtonOff();"
-          onmousedown="holdButtonOn(100, function() {calcRotation(0.01); prev_theta = theta;});" onmouseup="holdButtonOff();" onmouseout="prev_theta = theta; holdButtonOff();">+</button><br>
+        <button title="Rotate Counter-Clockwise" id="rotate_ccw_button" style="font-weight:bold; text-align:center; padding:0px; width:30px;">-</button>
+        <button title="Undo Rotation" id="rotate_zero_button" style="font-weight:bold; text-align:center; padding:0px; width:30px;">0</button>
+        <button title="Rotate Clockwise" id="rotate_cw_button" style="font-weight:bold; text-align:center; padding:0px; width:30px;">+</button><br>
         <span title="Change Animation Time Direction" id="timedirection">time direction:</span>
-        <span title="Normal Time Progression" id="Forward"><input id="forward_button" type="radio" name="time_direction"
-          onmouseup="delta_t = Math.abs(delta_t); $i('forward_button').checked = true;" ontouchend="delta_t = Math.abs(delta_t); $i('forward_button').checked = true;"><span>Forward</span></span>
-        <span title="Reversed Time Progression" id="Backward"><input id="backward_button" type="radio" name="time_direction"
-          onmouseup="delta_t = -Math.abs(delta_t); $i('backward_button').checked = true;" ontouchend="delta_t = -Math.abs(delta_t); $i('backward_button').checked = true;"><span>Backward</span></span><br>
+        <span title="Normal Time Progression" id="Forward"><input id="forward_button" type="radio" name="time_direction"><span>Forward</span></span>
+        <span title="Reversed Time Progression" id="Backward"><input id="backward_button" type="radio" name="time_direction"><span>Backward</span></span><br>
       </span>
-      <button id="slower_button" title="Slow Down the Animation 2x" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;"
-        onmouseup="steps_per_tick = steps_per_tick*2;" ontouchend="event.preventDefault(); steps_per_tick = steps_per_tick*2;">Slower</button>
-      <button id="faster_button" title="Speed Up the Animation 2x" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;"
-        onmouseup="steps_per_tick = steps_per_tick/2;" ontouchend="event.preventDefault(); steps_per_tick = steps_per_tick/2;">Faster</button>
-      <button id="reset_button" title="Reset the Animation" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;"
-        onmouseup="reset();" ontouchend="event.preventDefault(); reset();">Reset</button>
+      <button id="slower_button" title="Slow Down the Animation 2x" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;">Slower</button>
+      <button id="faster_button" title="Speed Up the Animation 2x" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;">Faster</button>
+      <button id="reset_button" title="Reset the Animation" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;">Reset</button>
 			&nbsp;
-			<span id="current_time_span" onmousedown="get_t();">
+			<span id="current_time">
         <span id="current_time_span1" style="font-family:cambria_math"></span>
         <span style="font-family:cambria_math">/T =</span>
 				<span id="current_time_span2"></span>
 			</span><br>
-			<button id="exit_button" title="Exit the Animation" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;"
-        onmouseup="return_to_start(); stop(); init();" ontouchend="event.preventDefault(); return_to_start(); stop(); init();">Exit</button>
-      <button id="pause_resume_button" title="Pause the Animation" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;"
-        onmouseup="pause_resumeButton();" ontouchend="event.preventDefault(); pause_resumeButton();">Pause</button>
+			<button id="exit_button" title="Exit the Animation" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;">Exit</button>
+      <button id="pause_resume_button" title="Pause the Animation" type="button" style="font-weight:bold; text-align:center; padding:0px; width:60px;">Pause</button>
       <span id="single_steps">
         <span title="While Animation is Paused, Step to Previous/Next Time Slice" id="single_step">single step:</span>
-        <button id="stepbackward_button" title="Step Animation Backward One Time Unit" type="button" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
-        onmousedown="holdButtonOn(200, function() {step(false); setCurrentTime();});" onmouseup="holdButtonOff();" onmouseout="holdButtonOff();"
-        ontouchstart="event.preventDefault(); holdButtonOn(200, function() {step(false); setCurrentTime();});"
-        ontouchend="event.preventDefault(); holdButtonOff();"
-        ontouchmove="event.preventDefault(); holdButtonOff();">-</button>
-        <button id="stepforward_button" title="Step Animation Forward One Time Unit" type="button" style="font-weight:bold; text-align:center; padding:0px; width:30px;"
-        onmousedown="holdButtonOn(200, function() {step(true); setCurrentTime();});" onmouseup="holdButtonOff();" onmouseout="holdButtonOff();"
-        ontouchstart="event.preventDefault(); holdButtonOn(200, function() {step(true); setCurrentTime();});"
-        ontouchend="event.preventDefault(); holdButtonOff();"
-        ontouchmove="event.preventDefault(); holdButtonOff();">+</button>
+        <button id="stepbackward_button" title="Step Animation Backward One Time Unit" type="button" style="font-weight:bold; text-align:center; padding:0px; width:30px;">-</button>
+        <button id="stepforward_button" title="Step Animation Forward One Time Unit" type="button" style="font-weight:bold; text-align:center; padding:0px; width:30px;">+</button>
       </span><br>
       <span id="coordinates">
         <span title="Spacetime Events Coordinates and Interval" id="Events"><input id="coord_checkbox" type="checkbox">Events:</span>&nbsp;
         <span id="coord_buttons">
           <span title="Spacetime Event A" id="A_event" style="font-family:Arial,Helvetica,sans-serif; font-size:14pt;">A</span>
-          <button id="set_E1" title="Define Position and Time of Event A" type="button" style="width:40px; vertical-align:middle; text-align:center; padding:0px; font-weight:bold;"
-            onmouseup="E1_setting = true; E2_setting = false; show_E_setting('A');" ontouchend="event.preventDefault(); E1_setting = true; E2_setting = false; show_E_setting('A');">Set</button>
-          <button id="gotoE1_button" title="Jump to Time of Event A" type="button" style="width:48px; vertical-align:middle; text-align:center; padding:0px; font-weight:bold;"
-            onmouseup="if (refSdblprime()) {t = E1.t_dblprime;} else if (refSprime()) {t = E1.t_prime;} else {t = E1.t;} calcTime(); drawFrame();"
-            ontouchend="event.preventDefault(); if (refSdblprime()) {t = E1.t_dblprime;} else if (refSprime()) {t = E1.t_prime;} else {t = E1.t;} calcTime(); drawFrame();">GoTo</button>
+          <button id="set_E1_button" title="Define Position and Time of Event A" type="button" style="width:40px; vertical-align:middle; text-align:center; padding:0px; font-weight:bold;">Set</button>
+          <button id="goto_E1_button" title="Jump to Time of Event A" type="button" style="width:48px; vertical-align:middle; text-align:center; padding:0px; font-weight:bold;">GoTo</button>
           <span title="Spacetime Event B" id="B_event" style="font-family:Arial,Helvetica,sans-serif; font-size:14pt;">B</span>
-          <button id="set_E2" title="Define Position and Time of Event B" type="button" style="width:40px; vertical-align:middle; padding:0; font-weight:bold;"
-            onmouseup="E2_setting = true; E1_setting = false; show_E_setting('B');" ontouchend="E2_setting = true; E1_setting = false; show_E_setting('B');">Set</button>
-          <button id="gotoE2_button" title="Jump to Time of Event B" type="button" style="width:48px; vertical-align:middle; padding:0; font-weight:bold;"
-            onmouseup="if (refSdblprime()) {t = E2.t_dblprime;} else if (refSprime()) {t = E2.t_prime;} else {t = E2.t;} calcTime(); drawFrame();"
-            ontouchend="event.preventDefault(); if (refSdblprime()) {t = E2.t_dblprime;} else if (refSprime()) {t = E2.t_prime;} else {t = E2.t;} calcTime(); drawFrame();">GoTo</button><br>
+          <button id="set_E2_button" title="Define Position and Time of Event B" type="button" style="width:40px; vertical-align:middle; padding:0; font-weight:bold;">Set</button>
+          <button id="goto_E2_button" title="Jump to Time of Event B" type="button" style="width:48px; vertical-align:middle; padding:0; font-weight:bold;">GoTo</button><br>
           <span id="E_setting" style="color:red; text-indent:30px;"> </span><br>
         </span>
       </span>
@@ -211,10 +171,10 @@
 			This results in length contraction (in the direction of motion) and time dilation, consistent with Relativity.<br>
 			</p>
 			<br>
-			<button type="button" style="font-weight:bold" onmouseup="SR_Button();">Special Relativity</button>
-      <button type="button" style="font-weight:bold" onmouseup="GR_Button();">General Relativity</button>
+			<button type="button" id="SR_button" style="font-weight:bold">Special Relativity</button>
+      <button type="button" id="GR_button" style="font-weight:bold">General Relativity</button>
 			<br><br>
-			<button type="button" style="font-weight:bold" onmouseup="return_to_start();">RETURN</button>
+			<button type="button" id="return_to_start" style="font-weight:bold">RETURN</button>
     </div>
         
     <div id="SR_text" style="font-family:Cambria,Math; background-color:rgb(0,0,0); position:absolute; color:rgb(255,255,255); text-align:center; width:100%; padding:0px; border-width:0px; margin:0px; min-width:300px; z-index:2; visibility:hidden;">
@@ -270,7 +230,7 @@
         = (&Delta;<font color='cyan'>x'</font>)&sup2; + (&Delta;<font color='cyan'>y'</font>)&sup2; + (&Delta;<font color='cyan'>z'</font>)&sup2; - (c&Delta;<font color='cyan'>t'</font>)&sup2;
       </div>
 			<br><br>
-			<button type="button" style="font-weight:bold" onmouseup="return_to_description();">RETURN</button>
+			<button type="button" id="return_from_SR" style="font-weight:bold">RETURN</button>
     </div>
         
 		<div id="GR_text" style="font-family:Cambria,Math; text-align:center; background-color:rgba(0,0,0,1); position:absolute; color:rgb(255,255,255); width:100%; top:0px; padding:0px; border-width:0px; margin:0px; min-width:300px; z-index:2; visibility:hidden;">
@@ -302,7 +262,7 @@
 			</div><br>
 			[the far-away frame is also the Schwarzschild frame which is usually represented by (t, x, y), but here (<font color='orange'>t", x", y"</font>) is used instead]<br>
 			<br>
-			<button style="text-align:center; font-weight:bold" type="button" onmouseup="return_to_description();">RETURN</button><br>
+			<button type="button" id="return_from_GR" style="text-align:center; font-weight:bold">RETURN</button><br>
 			<br>
 		
 			<u>Derivation of the "velocity of space"</u><br>
@@ -329,7 +289,7 @@
 		</div>
 		
 		<div id="FAQ" style="font-family:Cambria,Math; text-align:left; visibility:hidden; background-color:rgba(0,0,0,1); position:absolute; color:rgb(255,255,255); width:100%; top:0px; padding:0px; border-width:0px; margin:0px; min-width:300px; z-index:2">
-			<div style="text-align:center; font-weight:bold"> <button type="button" onmouseup="return_to_start();">RETURN</button></div>
+			<div style="text-align:center; font-weight:bold"> <button type="button" id="return_from_FAQ_1">RETURN</button></div>
 			<br>
 			<span style="font-weight:bold">What is a Light Clock?</span><br>	
 			Following Einstein we define time to be what is measured with a clock, and the ideal time measurement device is a Light Clock.<br>
@@ -613,18 +573,18 @@
       if (QM is time-symmetric waves in 3D space) and (GR is flowing 3D space) then (QG is time-symmetric waves in flowing 3D space)<br>
       <br>
       
-			<div style="text-align:center; font-weight:bold"> <button type="button"onmouseup="return_to_start();">RETURN</button> </div>
+			<div style="text-align:center; font-weight:bold"> <button type="button" id="return_from_FAQ_2">RETURN</button> </div>
 		</div>
 		
   	<div id="start" style="font-family:Arial,Helvetica,sans-serif; text-align:center; font-weight:bold; background-color:rgb(0,0,0); position:absolute; width:100%; height:100%; left:0%; top:0px">
 			<br>
-			<button title="Start the Light Clock Animation" type="button" style="text-align:center; background-color:rgb(0,255,0);" onmouseup="startButton(event);">START ANIMATION</button>
+			<button title="Start the Light Clock Animation" type="button" id="start_button" style="text-align:center; background-color:rgb(0,255,0);">START ANIMATION</button>
 			<br><br>
-			<button title="LightClock App Description" type="button" style="text-align:center; font-weight:bold" onmouseup="descriptionButton();">Description</button>
+			<button title="LightClock App Description" type="button" id="description_button" style="text-align:center; font-weight:bold">Description</button>
 			<br><br>
-      <button type="button" style="font-weight:bold" onmouseup="FAQ_Button();">FAQ</button>
+      <button type="button" id="FAQ_button" style="font-weight:bold">FAQ</button>
 			<br><br>
-			<button title="Mouse and Touch Screen Controls" type="button" style="text-align:center; font-weight:bold" onmouseup="UI_Button();">User Interface Help</button>
+			<button title="Mouse and Touch Screen Controls" type="button" id="UI_button" style="text-align:center; font-weight:bold">User Interface Help</button>
     </div>
 		
 		<div id="UI" style="font-family:Arial,Helvetica,sans-serif; visibility:hidden; text-align:center; background-color:rgb(0,0,0); color:rgb(255,255,255); position:absolute; width:100%; left:0%; top:0px">
@@ -635,7 +595,7 @@
 				<tr> <td style="text-align:left">zoom grid/rotate clock</td> <td style="border-left:3px solid blue; font-style:italic;">right mouse drag</td> <td style="border-left:1px solid blue; font-style:italic;">two finger gesture</td> </tr>
 			</table>
 			<br>
-			<button type="button" style="font-weight:bold" onmouseup="return_to_start();">RETURN</button>
+			<button type="button" id="return_from_UI" style="font-weight:bold">RETURN</button>
     </div>
 		
     <script type="text/javascript">
@@ -686,7 +646,7 @@ var frame_timerID;  //interval timer ID
 var opacity;
 var started=false;
 var scaling_enabled, rotation_enabled;
-var retarded_waves, advanced_waves, paused, centered, coords;  //toggles
+var paused, centered, coords;  //toggles
 var ticks=0;
 var t_tick;  //S time to complete one roundtrip = S_tick (if dr'= 0 or dr"= 0 then S_tick = S'_tick*gamma = S"_tick)
 var t,delta_t; //lab,rain: S time since start; far: S" time since start
@@ -862,7 +822,7 @@ function speed_change()
 	var v_over_c;
 	
   current_x = v*t;
-  if (!speed_slider) return;
+  //if (!speed_slider) return;
   v_over_c = $i('speed_range').value/1000;
 	//v_over_c = document.querySelector('#speed_range').value/1000;
 	if (v_over_c == 1) {v_over_c = 0.999; $i('speed_range').value = v_over_c*100;}
@@ -1111,7 +1071,7 @@ function clockStime(ref) // S time at center of light clock
   else if (frameType(ref) == 'S"') return(tdblprime_to_t(t,0));
 }
 
-function drawLattice(type, grid, clocks, mini_light_clocks)
+function drawLattice(type, grid, clocks, mini_lightclocks)
 {
   var dx,dy,x,y,delta_x,delta_y,grid_opacity;
   var r,x_scale,dv,clock_angle,t_left,t_right,v_left,v_right;
@@ -1244,7 +1204,7 @@ function drawLattice(type, grid, clocks, mini_light_clocks)
       else if (refSdblprime())  clock_angle = angleLatticeClock(type,t,x - offset_x - v*t/(gamma*gamma)); // t is S" time
       else if (refSprime())     clock_angle = angleLatticeClock(type,t,x - offset_x - v*t); // t is S' time
       else if (refS())          clock_angle = angleLatticeClock(type,t,x - offset_x - v*t); // t is S time
-      if (mini_light_clocks) // set up mini light clocks
+      if (mini_lightclocks) // set up mini light clocks
       {
         miniclock_angle = clock_angle*10; mini_t_cycle = (miniclock_angle % (2*Math.PI))/(2*Math.PI)*(t_tick/10);
         if (miniclock_angle < 0) mini_t_cycle = (t_tick/10) + mini_t_cycle;
@@ -1277,7 +1237,7 @@ function drawLattice(type, grid, clocks, mini_light_clocks)
         context.strokeStyle = grid_color;
         drawArc(x/x_scale, y, r, 0, 2*Math.PI); // draw clock w/o hands
         drawLine(x/x_scale, y, x/x_scale + r*Math.cos(clock_angle - Math.PI/2)*0.8, y + r*Math.sin(clock_angle - Math.PI/2)*0.8); // draw clock hand
-        if (mini_light_clocks) // draw mini light clocks
+        if (mini_lightclocks) // draw mini light clocks
         {
           drawLine(x/x_scale, y, x/x_scale + r*Math.cos(miniclock_angle - Math.PI/2), y + r*Math.sin(miniclock_angle - Math.PI/2)); // draw miniclock hand
           context.strokeStyle = 'silver';
@@ -1838,15 +1798,15 @@ function drawCoordLines(diagram,dir,Hangle,Hw,Hh,h0,dh_per_dH,Vangle,Vh,Vw,v0,dv
   
   if (dir == "YT")
   {
-    if      (diagram == "S")  {h_label = "ct/D";  v_label = "y/D";}
-    else if (diagram == "S'") {h_label = "ct'/D"; v_label = "y'/D";}
-    else if (diagram == 'S"') {h_label = 'ct"/D'; v_label = 'y"/D';}
+    if      (diagram == "S")  {h_label = "t/T";  v_label = "y/D";}
+    else if (diagram == "S'") {h_label = "t'/T"; v_label = "y'/D";}
+    else if (diagram == 'S"') {h_label = 't"/T'; v_label = 'y"/D';}
   }
   else // XT or XT_Y+ or XT_Y-
   {
-    if      (diagram == "S")  {h_label = "x/D";   v_label = "ct/D";}
-    else if (diagram == "S'") {h_label = "x'/D";  v_label = "ct'/D";}
-    else if (diagram == 'S"') {h_label = 'x"/D';  v_label = 'ct"/D';}
+    if      (diagram == "S")  {h_label = "x/D";   v_label = "t/T";}
+    else if (diagram == "S'") {h_label = "x'/D";  v_label = "t'/T";}
+    else if (diagram == 'S"') {h_label = 'x"/D';  v_label = 't"/T';}
   }
 
 	// horizontal lines (spaced along vertical axis)
@@ -1939,7 +1899,7 @@ function drawXT_Y(plus)  //only for theta == 0
   else      {t_bottom = (Math.ceil(-0.5 + clockStime(ref)/t_tick) + 0.5); t_factor = -1;}
   vel = Math.abs(v);
 
-  if (On('S_diagrams'))
+  if (On('S_diag_checkbox'))
   {
     //diagram = 'S'; x_label="x";  t_label="t"; speedcolor=S_color(1); speedfactor = ""; x_left = xprime_to_x(v*tick_cnt,-0.5); x_right = xprime_to_x(v*tick_cnt,0.5);
     diagram = 'S'; x_label="x";  t_label="t"; speedcolor=S_color(1); speedfactor = "";
@@ -1952,7 +1912,7 @@ function drawXT_Y(plus)  //only for theta == 0
     if (!plus) {Hangle =-Hangle; Vangle =-Vangle;}
     drawCoordLines(diagram,dir,Hangle,Hw,Hh,h0,dh_per_dH,Vangle,Vh,Vw,v0,dv_per_dV);
   }
-  if (On('Sprime_diagrams'))
+  if (On('Sprime_diag_checkbox'))
   {
     diagram = "S'"; x_label="x'"; t_label="t'"; speedcolor=Sprime_color(1); speedfactor = ""; x_left = -0.5; x_right = 0.5;
     if (v == 0)               {Hangle = 0;        Hw = d/2;           Hh = d/2;         h0 = t_bottom;        dh_per_dH = t_factor/(2*Hh);        Vangle = 0;       Vh = d/2;         Vw = d/2;         v0 = -1/2;                  dv_per_dV = 1/(2*Vw);}
@@ -1962,7 +1922,7 @@ function drawXT_Y(plus)  //only for theta == 0
     if (!plus) {Hangle =-Hangle; Vangle =-Vangle;}
     drawCoordLines(diagram,dir,Hangle,Hw,Hh,h0,dh_per_dH,Vangle,Vh,Vw,v0,dv_per_dV);
   }
-  if (On('Sdblprime_diagrams'))
+  if (On('Sdblprime_diag_checkbox'))
   {
     diagram = 'S"'; x_label='x"'; t_label='t"'; speedcolor=Sdblprime_color(1); if (v != 0) speedfactor = "/\u03B3\u00B2"; else speedfactor = ""; x_left = xprime_to_xdblprime(-0.5); x_right = xprime_to_xdblprime(0.5);
     if (v == 0)               {Hangle = 0;        Hw = d/2;           Hh = d/2;         h0 = t_bottom*gamma;  dh_per_dH = t_factor/(2*Hh);        Vangle = 0;       Vh = d/2;         Vw = d/2;         v0 = -1/2;                  dv_per_dV = 1/(2*Vw);}
@@ -2041,7 +2001,7 @@ function drawXT()  //only for theta == 0
   else if ((refS()) && !centered)       {context.translate(offset_x + x0 + f, offset_y + y0 - b + c*t_cycle);}
   else if ((refS()) && centered)        {context.translate(-v*t_cycle + f, -b + c*t_cycle);}
   
-	if (On('S_diagrams'))
+	if (On('S_diag_checkbox'))
   {
     diagram = 'S'; x_label="x";  t_label="t"; t_bottom = gamma*ticks; x_left = xprime_to_x(-0.5,ticks+0.5); speedcolor=S_color(1); speedfactor = "";
     if      (refS())         {Hangle = 0;       Hw = a;       Hh = b;       h0 = t_bottom;  dh_per_dH = gamma/(2*Hh);   Vangle = 0;        Vh = b;      Vw = a;      v0 = x_left;  dv_per_dV = gamma/(2*Vw);}
@@ -2049,7 +2009,7 @@ function drawXT()  //only for theta == 0
     else if (refSdblprime()) {Hangle = angle2;  Hw = a*cos2;  Hh = b*cos2;  h0 = t_bottom;  dh_per_dH = gamma/(2*Hh);   Vangle = -angle2;  Vh = b*cos2; Vw = a*cos2; v0 = x_left;  dv_per_dV = gamma/(2*Vw);}
     drawCoordLines(diagram,'XT',Hangle,Hw,Hh,h0,dh_per_dH,Vangle,Vh,Vw,v0,dv_per_dV);
   }
-  if (On('Sprime_diagrams'))
+  if (On('Sprime_diag_checkbox'))
   {
     diagram = "S'"; x_label="x'"; t_label="t'"; t_bottom = ticks; x_left = -0.5; speedcolor=Sprime_color(1); speedfactor = "";
     if      (refS())         {Hangle = -angle1; Hw = e;       Hh = e*cos3;  h0 = t_bottom;  dh_per_dH = 1/(2*Hh);       Vangle = angle1;   Vh = e;      Vw = e*cos3; v0 = x_left;    dv_per_dV = 1/(2*Vw);}
@@ -2057,7 +2017,7 @@ function drawXT()  //only for theta == 0
     else if (refSdblprime()) {Hangle = 0;       Hw = a;       Hh = b;       h0 = t_bottom;  dh_per_dH = 1/(2*Hh);       Vangle = 0;        Vh = b;      Vw = a;      v0 = x_left;    dv_per_dV = 1/(2*Vw);}
     drawCoordLines(diagram,'XT',Hangle,Hw,Hh,h0,dh_per_dH,Vangle,Vh,Vw,v0,dv_per_dV);
   }
-  if (On('Sdblprime_diagrams'))
+  if (On('Sdblprime_diag_checkbox'))
   {
     diagram = 'S"'; x_label='x"'; t_label='t"'; t_bottom = gamma*ticks; x_left = xprime_to_xdblprime(-0.5); speedcolor=Sdblprime_color(1); if (v != 0) speedfactor = "/\u03B3\u00B2"; else speedfactor = "";
     if      (refS())         {Hangle = -angle1; Hw = e;       Hh = e*cos3;  h0 = t_bottom;   dh_per_dH = gamma/(2*Hh);  Vangle = angle1;   Vh = e;      Vw = e*cos3; v0 = x_left;  dv_per_dV = 1/(gamma*2*Vw);}
@@ -2066,7 +2026,7 @@ function drawXT()  //only for theta == 0
     drawCoordLines(diagram,'XT',Hangle,Hw,Hh,h0,dh_per_dH,Vangle,Vh,Vw,v0,dv_per_dV);
   }
     
-  if (On('S_diagrams') || On('Sprime_diagrams') || (On('Sdblprime_diagrams') && ref != 'SR_lab')) // draw light paths
+  if (On('S_diag_checkbox') || On('Sprime_diag_checkbox') || (On('Sdblprime_diag_checkbox') && ref != 'SR_lab')) // draw light paths
 	{
 		context.strokeStyle = lightpath_color(0.8); context.lineWidth=2.0;
     X0 =-f;Y0 = b;    X1 = -a;Y1 = f;    X2 = a;Y2 =-f;    X3 = f; Y3 = -b;
@@ -2099,7 +2059,7 @@ function drawYT()  //only for theta == 0
   else if	(ref != 'GR_far')	{context.translate(offset_x + x0_init + v*t - c*t_tick/2 + c*t_cycle, offset_y + y0);}
   else if	(ref == 'GR_far')	{context.translate(offset_x + (x0_init + v*t)/(gamma*gamma) - c*t_tick/2 + c*t_cycle, offset_y + y0);}
   
-  if (On('S_diagrams')) // draw yt
+  if (On('S_diag_checkbox')) // draw yt
 	{
     y_label="y";  t_label="t";  yt_color=S_color(1);
 		a = c*t_tick/2; b = d/2;
@@ -2112,7 +2072,7 @@ function drawYT()  //only for theta == 0
 		annotate(speedtext1 + ' = -' + speedtext2,(-a)/2,(-b)/2,'center','bottom',Math.atan((b)/(-a)),yt_color);  //NW
 	}
   
-	if (On('Sprime_diagrams')) // draw y't'
+	if (On('Sprime_diag_checkbox')) // draw y't'
 	{
     y_label="y'";  t_label="t'";  yt_color=Sprime_color(1);
 		a = d/2; b = a;
@@ -2125,7 +2085,7 @@ function drawYT()  //only for theta == 0
 		annotate(speedtext1 + ' = -c',(-a)/2,(-b)/2,'center','top',Math.atan((b)/(-a)),yt_color);  //NW
 	}
   
-  if (On('Sdblprime_diagrams')) // draw y"t"
+  if (On('Sdblprime_diag_checkbox')) // draw y"t"
 	{
     y_label='y"';  t_label='t"';  yt_color=Sdblprime_color(1);
 		a = c*t_tick/2; b = d/2;
@@ -2139,7 +2099,7 @@ function drawYT()  //only for theta == 0
 	}
   context.restore();
 
-	if (On('S_diagrams') || On('Sprime_diagrams') || On('Sdblprime_diagrams')) // draw light paths
+	if (On('S_diag_checkbox') || On('Sprime_diag_checkbox') || On('Sdblprime_diag_checkbox')) // draw light paths
 	{
     context.save();
     if      (centered)        {context.translate(-c*t_tick/2 + c*t_cycle, 0);}
@@ -2537,7 +2497,7 @@ function On(id) {return ($i(id).checked && !$i(id).disabled);}
 
 function drawFrame()
 {
-  var left_photon,right_photon,up_photon,down_photon;
+  var left_photon,right_photon,up_photon,down_photon,retarded_waves,advanced_waves;
   
   context.save();
   context.clearRect(0,0,w,h);  //erase frame
@@ -2546,9 +2506,9 @@ function drawFrame()
   //context.beginPath(); context.rect(0, 0, w, h); context.lineWidth = 5; context.strokeStyle = "blue"; context.stroke(); context.closePath();
   opacity = 1-((t_cycle)/1.2)/t_tick;
 	calcMirrors(theta);
-	drawLattice("S",  On('S_grid_checkbox'),          On('S_clocks_checkbox'),          On('mini_light_clocks_checkbox'));
-	drawLattice("S'", On('Sprime_grid_checkbox'),     On('Sprime_clocks_checkbox'),     On('mini_light_clocks_checkbox'));
-	drawLattice('S"', On('Sdblprime_grid_checkbox'),  On('Sdblprime_clocks_checkbox'),  On('mini_light_clocks_checkbox'));
+	drawLattice("S",  On('S_grid_checkbox'),          On('S_clocks_checkbox'),          On('mini_lightclocks_checkbox'));
+	drawLattice("S'", On('Sprime_grid_checkbox'),     On('Sprime_clocks_checkbox'),     On('mini_lightclocks_checkbox'));
+	drawLattice('S"', On('Sdblprime_grid_checkbox'),  On('Sdblprime_clocks_checkbox'),  On('mini_lightclocks_checkbox'));
   mark_left = false; mark_right = false; mark_up = false; mark_down = false;
   setCurrentTime();
   if (diagramsOn())
@@ -2563,6 +2523,9 @@ function drawFrame()
   {
     disableDiagrams();
     if (paused) inherit('coordinates'); else hidden('coordinates');
+    advanced_waves = $i("advanced_waves_checkbox").checked;
+    retarded_waves = $i("retarded_waves_checkbox").checked;
+    $i('full_arcs_checkbox').disabled = (!retarded_waves) && (!advanced_waves);
     if (retarded_waves) if (ref == "GR_far") {drawEllipticalWaves(true);} else {drawWaves(true);}
     if (advanced_waves) if (ref == "GR_far") {drawEllipticalWaves(false);} else {drawWaves(false);}
     if ($i('photons_checkbox').checked) drawPhotons(true,true,true,true);
@@ -2641,29 +2604,29 @@ function init()
 	
   mthick = 5; mlen = 50; mlen_prime = mlen/gamma;
 	$i('photons_checkbox').checked = true;
-  retarded_waves = false; $i('retarded_waves_checkbox').checked = false;
-	advanced_waves = false; $i('advanced_waves_checkbox').checked = false;
+  $i('retarded_waves_checkbox').checked = false;
+	$i('advanced_waves_checkbox').checked = false;
   $i('full_arcs_checkbox').checked = false; $i('full_arcs_checkbox').disabled = true;
 	coords = false; $i('coord_checkbox').checked = false;
   paused = false; $i('pause_resume_button').innerHTML = "Pause "; hidden('single_steps');
 	centered = false; $i("centered_button").innerHTML="Center"; hidden('centered_button');
 	$i('S_grid_checkbox').checked = false; $i('Sprime_grid_checkbox').checked = false; $i('Sdblprime_grid_checkbox').checked = false;
 	$i('S_clocks_checkbox').checked = false; $i('Sprime_clocks_checkbox').checked = false; $i('Sdblprime_clocks_checkbox').checked = false;
-  $i('mini_light_clocks_checkbox').checked = false; $i('mini_light_clocks_checkbox').disabled = true;
+  $i('mini_lightclocks_checkbox').checked = false; $i('mini_lightclocks_checkbox').disabled = true;
   $i('annotation_checkbox').checked = false;
 	initDiagrams(); disableDiagrams();
 	$i('coord_checkbox').checked = false;
-	hidden('coordinates'); hidden('gotoE1_button'); hidden('gotoE2_button');
+	hidden('coordinates'); hidden('goto_E1_button'); hidden('goto_E2_button');
   theta = 0; prev_theta = theta;
   $i('forward_button').checked = true; $i('backward_button').checked = false;
 	scaling_enabled = true; initScaling();
 	rotation_enabled = true; initRotation();
   started = false;
 	reset();
-  ref = 'SR_lab'; ref_frame('SR_lab');
+  SRlab();
 }
 
-function start()
+function start_animation()
 {
   init();
   frame_timerID = setInterval(animate_func,msec_delay);
@@ -2728,23 +2691,23 @@ function resize()
 
 //buttons
 
-function startButton()		    {hidden('start'); start(); inherit('canvas');}
+function start()		    {hidden('start'); start_animation(); inherit('canvas');}
 
-function descriptionButton()	{hidden('start'); inherit('description');}
+function description()	{hidden('start'); inherit('description');}
 
-function SR_Button()			{hidden('description'); inherit('SR_text'); $i('body').style.overflow = "auto";}
+function SR()			      {hidden('description'); inherit('SR_text'); $i('body').style.overflow = "auto";}
 
-function GR_Button()			{hidden('description'); inherit('GR_text'); $i('body').style.overflow = "auto";}
+function GR()			      {hidden('description'); inherit('GR_text'); $i('body').style.overflow = "auto";}
 
-function FAQ_Button()			{hidden('description'); inherit('FAQ'); $i('body').style.overflow = "auto";}
+function FAQ()			    {hidden('description'); inherit('FAQ'); $i('body').style.overflow = "auto";}
 
-function UI_Button()		    {hidden('start'); inherit('UI');}
+function UI()		        {hidden('start'); inherit('UI');}
 
 function return_to_start()
 {
 	window.scrollTo(0,0);
 	hidden('description');
-    hidden('FAQ');
+  hidden('FAQ');
 	hidden('UI');
 	hidden('canvas');
 	hidden('controls');
@@ -2762,9 +2725,9 @@ function return_to_description()
 
 function initDiagrams()
 {
-  $i('S_diagrams').checked = false;
-  $i('Sprime_diagrams').checked = false;
-  $i('Sdblprime_diagrams').checked = false;
+  $i('S_diag_checkbox').checked = false;
+  $i('Sprime_diag_checkbox').checked = false;
+  $i('Sdblprime_diag_checkbox').checked = false;
 	$i("XT_button").checked = true;
 	$i("XT_Yplus_button").checked = false;
 	$i("XT_Yminus_button").checked = false;
@@ -2774,8 +2737,8 @@ function initDiagrams()
 
 function clearEvents()
 {
-  E1set = false; hidden('gotoE1_button');
-  E2set = false; hidden('gotoE2_button');
+  E1set = false; hidden('goto_E1_button');
+  E2set = false; hidden('goto_E2_button');
 }
 
 function enableDiagrams()
@@ -2801,8 +2764,8 @@ function enableCoord(coords)
 	{
 		if (navigator.platform == "iPhone") $i('controls_part1').style.visibility = 'hidden';
 		inherit('coord_buttons');
-		if (E1set) {inherit('gotoE1_button');} else {hidden('gotoE1_button');}
-		if (E2set) {inherit('gotoE2_button');} else {hidden('gotoE2_button');}
+		if (E1set) {inherit('goto_E1_button');} else {hidden('goto_E1_button');}
+		if (E2set) {inherit('goto_E2_button');} else {hidden('goto_E2_button');}
 	}
 	else // hide events
 	{
@@ -2833,99 +2796,111 @@ function setTime(from_ref, to_ref)
 
 var S_diagrams_title, Sprime_diagrams_title, Sdblprime_diagrams_title;
 
-function ref_frame(frame)
+function SRlab()
 {
-  if (frame == 'SR_lab')
-	{
-		hidden('r_span'); if (v != 0) inherit('centered_button'); else hidden('centered_button');
-    $i("Sdblprime_diagrams").disabled = true; $i("Sdblprime_grid_checkbox").disabled = true;
-    $i("Sdblprime_clocks_checkbox").disabled = true; setClocksCheckbox();
-		$i("SR_lab_button").checked = true;
-		$i("S_grid_span").title = "Grid of Laboratory Frame xy Coordinates";
-    $i("Sprime_grid_span").title = "Grid of Rocket Frame x'y' Coordinates";
-		$i("S_clocks_span").title = "Grid of Laboratory Frame t Clocks";
-    $i("Sprime_clocks_span").title = "Grid of Rocket Frame t' Clocks";
-		S_diagrams_title = "Spacetime Diagrams for Laboratory Frame"; $i("S_diagrams_span").title = S_diagrams_title;
-    Sprime_diagrams_title = "Spacetime Diagrams for Rocket Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
-		$i("speed_span").title = "v = speed the Light Clock is moving through space\n[Click value to change it]";
-    centeredButton(false);
-	}
-  else if (frame == 'SR_rocket')
-  {
-    hidden('r_span'); if (v != 0) inherit('centered_button'); else hidden('centered_button');
-    $i("Sdblprime_diagrams").disabled = true; $i("Sdblprime_grid_checkbox").disabled = true;
-    $i("Sdblprime_clocks_checkbox").disabled = true; setClocksCheckbox();
-    $i("SR_rocket_button").checked = true;
-    $i("S_grid_span").title = "Grid of Laboratory Frame xy Coordinates";
-    $i("Sprime_grid_span").title = "Grid of Rocket Frame x'y' Coordinates";
-    $i("S_clocks_span").title = "Grid of Laboratory Frame t Clocks";
-    $i("Sprime_clocks_span").title = "Grid of Rocket Frame t' Clocks";
-    S_diagrams_title = "Spacetime Diagrams for Laboratory Frame"; $i("S_diagrams_span").title = S_diagrams_title;
-    Sprime_diagrams_title = "Spacetime Diagrams for Rocket Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
-    $i("speed_span").title = "v = speed the Light Clock is moving through space\n[Click value to change it]";
-    centeredButton(true);
-  }
-  else if (frame == 'GR_rain')
-	{
-		inherit('r_span'); if (v != 0) inherit('centered_button'); else hidden('centered_button');
-    $i("Sdblprime_diagrams").disabled = false; $i("Sdblprime_grid_checkbox").disabled = false;
-    $i("Sdblprime_clocks_checkbox").disabled = false; setClocksCheckbox();
-		$i("GR_rain_button").checked = true;
-		$i("S_grid_span").title = "Grid of Free-Falling Rain Frame xy Coordinates";
-    $i("Sprime_grid_span").title = "Grid of Stationary Shell Frame x'y' Coordinates";
-		$i("S_clocks_span").title = "Grid of Free-Falling Rain Frame t Clocks";
-    $i("Sprime_clocks_span").title = "Grid of Stationary Shell Frame t' Clocks";
-    S_diagrams_title = "Spacetime Diagrams for Free-Falling Rain Frame"; $i("S_diagrams_span").title = S_diagrams_title;
-    Sprime_diagrams_title = "Spacetime Diagrams for Stationary Shell Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
-		$i("speed_span").title = "v = speed space is moving past the stationary Light Clock\n[Click value to change it]";
-    centeredButton(false);
-	}
-  else if (frame == 'GR_shell')
-	{
-		inherit('r_span'); if (v != 0) inherit('centered_button'); else hidden('centered_button');
-    $i("Sdblprime_diagrams").disabled = false; $i("Sdblprime_grid_checkbox").disabled = false;
-    $i("Sdblprime_clocks_checkbox").disabled = false; setClocksCheckbox();
-		$i("GR_shell_button").checked = true;
-		$i("S_grid_span").title = "Grid of Free-Falling Rain Frame xy Coordinates";
-    $i("Sprime_grid_span").title = "Grid of Stationary Shell Frame x'y' Coordinates";
-		$i("S_clocks_span").title = "Grid of Free-Falling Rain Frame t Clocks";
-    $i("Sprime_clocks_span").title = "Grid of Stationary Shell Frame t' Clocks";
-    S_diagrams_title = "Spacetime Diagrams for Free-Falling Rain Frame"; $i("S_diagrams_span").title = S_diagrams_title;
-    Sprime_diagrams_title = "Spacetime Diagrams for Stationary Shell Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
-		$i("speed_span").title = "v = speed space is moving past the stationary Light Clock\n[Click value to change it]";
-    centeredButton(true);
-	}
-	else if (frame == 'GR_far')
-	{
-		inherit('r_span'); if (v != 0) inherit('centered_button'); else hidden('centered_button');
-    $i("Sdblprime_diagrams").disabled = false; $i("Sdblprime_grid_checkbox").disabled = false;
-    $i("Sdblprime_clocks_checkbox").disabled = false; setClocksCheckbox();
-		$i("GR_far_button").checked = true;
-    $i("S_grid_span").title = "Grid of Free-Falling Rain Frame xy Coordinates";
-    $i("Sprime_grid_span").title = "Grid of Stationary Shell Frame x'y' Coordinates";
-		$i("S_clocks_span").title = "Grid of Free-Falling Rain Frame t Clocks";
-    $i("Sprime_clocks_span").title = "Grid of Stationary Shell Frame t' Clocks";
-    S_diagrams_title = "Spacetime Diagrams for Free-Falling Rain Frame"; $i("S_diagrams_span").title = S_diagrams_title;
-    Sprime_diagrams_title = "Spacetime Diagrams for Stationary Shell Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
-    Sdblprime_diagrams_title = "Spacetime Diagrams for Far-Away Bookkeeper (Schwarzschild Frame)"; $i("Sdblprime_diagrams_span").title = Sdblprime_diagrams_title;
-		$i("speed_span").title = "v = speed space is moving past the stationary Light Clock\n[Click value to change it]]";
-		centeredButton(true);
-	}
-  setTime(ref, frame); ref = frame; if (paused) setCurrentTime();
+  hidden('r_span'); if (v != 0) inherit('centered_button'); else hidden('centered_button');
+  $i("Sdblprime_diag_checkbox").disabled = true; $i("Sdblprime_grid_checkbox").disabled = true;
+  $i("Sdblprime_clocks_checkbox").disabled = true; setClocksCheckbox();
+  $i("SR_lab_button").checked = true;
+  $i("S_grid_span").title = "Grid of Laboratory Frame xy Coordinates";
+  $i("Sprime_grid_span").title = "Grid of Rocket Frame x'y' Coordinates";
+  $i("S_clocks_span").title = "Grid of Laboratory Frame t Clocks";
+  $i("Sprime_clocks_span").title = "Grid of Rocket Frame t' Clocks";
+  S_diagrams_title = "Spacetime Diagrams for Laboratory Frame"; $i("S_diagrams_span").title = S_diagrams_title;
+  Sprime_diagrams_title = "Spacetime Diagrams for Rocket Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
+  $i("speed_span").title = "v = speed the Light Clock is moving through space\n[Click value to change it]";
+  centeredChange(false);
+  setTime(ref, 'SR_lab'); ref = 'SR_lab'; if (paused) setCurrentTime();
   drawFrame();
 }
+
+function SRrocket()
+{
+  hidden('r_span'); if (v != 0) inherit('centered_button'); else hidden('centered_button');
+  $i("Sdblprime_diag_checkbox").disabled = true; $i("Sdblprime_grid_checkbox").disabled = true;
+  $i("Sdblprime_clocks_checkbox").disabled = true; setClocksCheckbox();
+  $i("SR_rocket_button").checked = true;
+  $i("S_grid_span").title = "Grid of Laboratory Frame xy Coordinates";
+  $i("Sprime_grid_span").title = "Grid of Rocket Frame x'y' Coordinates";
+  $i("S_clocks_span").title = "Grid of Laboratory Frame t Clocks";
+  $i("Sprime_clocks_span").title = "Grid of Rocket Frame t' Clocks";
+  S_diagrams_title = "Spacetime Diagrams for Laboratory Frame"; $i("S_diagrams_span").title = S_diagrams_title;
+  Sprime_diagrams_title = "Spacetime Diagrams for Rocket Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
+  $i("speed_span").title = "v = speed the Light Clock is moving through space\n[Click value to change it]";
+  centeredChange(true);
+  setTime(ref, 'SR_rocket'); ref = 'SR_rocket'; if (paused) setCurrentTime();
+  drawFrame();
+}
+
+function GRrain()
+{
+  inherit('r_span'); if (v != 0) inherit('centered_button'); else hidden('centered_button');
+  $i("Sdblprime_diag_checkbox").disabled = false; $i("Sdblprime_grid_checkbox").disabled = false;
+  $i("Sdblprime_clocks_checkbox").disabled = false; setClocksCheckbox();
+  $i("GR_rain_button").checked = true;
+  $i("S_grid_span").title = "Grid of Free-Falling Rain Frame xy Coordinates";
+  $i("Sprime_grid_span").title = "Grid of Stationary Shell Frame x'y' Coordinates";
+  $i("S_clocks_span").title = "Grid of Free-Falling Rain Frame t Clocks";
+  $i("Sprime_clocks_span").title = "Grid of Stationary Shell Frame t' Clocks";
+  S_diagrams_title = "Spacetime Diagrams for Free-Falling Rain Frame"; $i("S_diagrams_span").title = S_diagrams_title;
+  Sprime_diagrams_title = "Spacetime Diagrams for Stationary Shell Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
+  $i("speed_span").title = "v = speed space is moving past the stationary Light Clock\n[Click value to change it]";
+  centeredChange(false);
+  setTime(ref, 'GR_rain'); ref = 'GR_rain'; if (paused) setCurrentTime();
+  drawFrame();
+}
+
+function GRshell()
+{
+  inherit('r_span'); if (v != 0) inherit('centered_button'); else hidden('centered_button');
+  $i("Sdblprime_diag_checkbox").disabled = false; $i("Sdblprime_grid_checkbox").disabled = false;
+  $i("Sdblprime_clocks_checkbox").disabled = false; setClocksCheckbox();
+  $i("GR_shell_button").checked = true;
+  $i("S_grid_span").title = "Grid of Free-Falling Rain Frame xy Coordinates";
+  $i("Sprime_grid_span").title = "Grid of Stationary Shell Frame x'y' Coordinates";
+  $i("S_clocks_span").title = "Grid of Free-Falling Rain Frame t Clocks";
+  $i("Sprime_clocks_span").title = "Grid of Stationary Shell Frame t' Clocks";
+  S_diagrams_title = "Spacetime Diagrams for Free-Falling Rain Frame"; $i("S_diagrams_span").title = S_diagrams_title;
+  Sprime_diagrams_title = "Spacetime Diagrams for Stationary Shell Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
+  $i("speed_span").title = "v = speed space is moving past the stationary Light Clock\n[Click value to change it]";
+  centeredChange(true);
+  setTime(ref, 'GR_shell'); ref = 'GR_shell'; if (paused) setCurrentTime();
+  drawFrame();
+}
+
+function GRfar()
+{
+  inherit('r_span'); if (v != 0) inherit('centered_button'); else hidden('centered_button');
+  $i("Sdblprime_diag_checkbox").disabled = false; $i("Sdblprime_grid_checkbox").disabled = false;
+  $i("Sdblprime_clocks_checkbox").disabled = false; setClocksCheckbox();
+  $i("GR_far_button").checked = true;
+  $i("S_grid_span").title = "Grid of Free-Falling Rain Frame xy Coordinates";
+  $i("Sprime_grid_span").title = "Grid of Stationary Shell Frame x'y' Coordinates";
+  $i("S_clocks_span").title = "Grid of Free-Falling Rain Frame t Clocks";
+  $i("Sprime_clocks_span").title = "Grid of Stationary Shell Frame t' Clocks";
+  S_diagrams_title = "Spacetime Diagrams for Free-Falling Rain Frame"; $i("S_diagrams_span").title = S_diagrams_title;
+  Sprime_diagrams_title = "Spacetime Diagrams for Stationary Shell Frame"; $i("Sprime_diagrams_span").title = Sprime_diagrams_title;
+  Sdblprime_diagrams_title = "Spacetime Diagrams for Far-Away Bookkeeper (Schwarzschild Frame)"; $i("Sdblprime_diagrams_span").title = Sdblprime_diagrams_title;
+  $i("speed_span").title = "v = speed space is moving past the stationary Light Clock\n[Click value to change it]]";
+  centeredChange(true);
+  setTime(ref, 'GR_far'); ref = 'GR_far'; if (paused) setCurrentTime();
+  drawFrame();
+}
+
+function forward_time() {delta_t = Math.abs(delta_t); $i('forward_button').checked = true; drawFrame();}
+function backward_time() {delta_t = -Math.abs(delta_t); $i('backward_button').checked = true; drwaFrame();}
 
 function setCurrentTime()
 {
   $i("current_time_span2").textContent = (t/d).toFixed(3);
   if (refS())
-    {$i("current_time_span1").textContent = 't'; $i("current_time_span").style.color = 'lime';}
+    {$i("current_time_span1").textContent = 't'; $i("current_time").style.color = 'lime';}
   else if (refSprime())
-    {$i("current_time_span1").textContent = "t'"; $i("current_time_span").style.color = 'cyan';}
+    {$i("current_time_span1").textContent = "t'"; $i("current_time").style.color = 'cyan';}
   else if (refSdblprime())
-    {$i("current_time_span1").textContent = 't"'; $i("current_time_span").style.color = 'orange';}
+    {$i("current_time_span1").textContent = 't"'; $i("current_time").style.color = 'orange';}
 }
-function pause_resumeButton()
+function pause_resume()
 {
 	paused = !paused;
 	if(paused)
@@ -2944,7 +2919,9 @@ function pause_resumeButton()
     }
 	enableCoord($i('coord_checkbox').checked);
 }
-function centeredButton(centered_value)
+
+function centeredButton() {centeredChange(!centered);}
+function centeredChange(centered_value)
 {
   centered = centered_value;
 	if (!centered)
@@ -2965,27 +2942,61 @@ function rSpan()		{if (get_r()) {reset();}}
 
 // checkboxes
 
-function toggleCheckbox(id)
+//function toggleCheckbox(event)
+//{
+//  var checkbox;
+//  
+//  event.preventDefault();
+//  if (event.target.nodeName == "SPAN") checkbox = event.target.firstChild;
+//  else checkbox = event.target;
+//  if (event.type == "touchend" || event.target.nodeName == "SPAN") checkbox.checked = !checkbox.checked;
+//  drawFrame();
+//}
+
+function toggleCheckbox(event)
 {
-  $i(id).checked = !$i(id).checked;
-  drawFrame();
+  var node;
+  var count;
+  if (event.target.nodeName == "SPAN")
+  {
+    count = event.currentTarget.childElementCount;
+    for (let i = 0; i < count; i++)
+    {
+      node = event.currentTarget.childNodes[i];
+      if (node.nodeName == "INPUT") {node.checked = !node.checked; drawFrame(); return;}
+    }
+  }
+  else drawFrame();
 }
 
-function advwavesCheckbox(touch)
-{
-	advanced_waves = !$i("advanced_waves_checkbox").checked;
-	$i('full_arcs_checkbox').disabled = (!retarded_waves) && (!advanced_waves);
-  if (touch) $i("advanced_waves_checkbox").checked = advanced_waves;
-  drawFrame();
-}
+// radio input
+function XT()                  {$i('XT_button').checked = true; clearEvents(); drawFrame();}
+function XT_Yplus()            {$i('XT_Yplus_button').checked = true; clearEvents(); drawFrame();}
+function XT_Yminus()           {$i('XT_Yminus_button').checked = true; clearEvents(); drawFrame();}
+function YT()                  {$i('YT_button').checked = true; clearEvents(); drawFrame();}
 
-function retwavesCheckbox(touch)
-{
-	retarded_waves = !$i("retarded_waves_checkbox").checked;
-	$i('full_arcs_checkbox').disabled = (!retarded_waves) && (!advanced_waves);
-  if (touch) $i("retarded_waves_checkbox").checked = retarded_waves;
-  drawFrame();
-}
+// buttons
+function zoom_out_down()       {holdButtonOn(100, function() {updateScale(scale*0.99);});}
+function zoom_out_up()         {prev_scale = scale; holdButtonOff();}
+function zoom_zero()           {initScaling(); drawFrame();}
+function zoom_in_down()        {holdButtonOn(100, function() {updateScale(scale*1.01);});}
+function zoom_in_up()          {prev_scale = scale; holdButtonOff();}
+function rotate_ccw_down()     {holdButtonOn(100, function() {calcRotation(-0.01); prev_theta = theta;});}
+function rotate_ccw_up()       {prev_theta = theta; holdButtonOff();}
+function rotate_zero()         {initRotation(); drawFrame();}
+function rotate_cw_down()      {holdButtonOn(100, function() {calcRotation(0.01); prev_theta = theta;});}
+function rotate_cw_up()        {prev_theta = theta; holdButtonOff();}
+function slower()              {steps_per_tick = steps_per_tick*2;}
+function faster()              {steps_per_tick = steps_per_tick/2;}
+function exit()                {return_to_start(); stop(); init();}
+function stepbackward_down()   {holdButtonOn(200, function() {step(false); setCurrentTime();});}
+function stepbackward_up()     {holdButtonOff();}
+function stepforward_down()    {holdButtonOn(200, function() {step(true); setCurrentTime();});}
+function stepforward_up()      {holdButtonOff();}
+function set_E1()              {E1_setting = true; E2_setting = false; show_E_setting('A');}
+function set_E2()              {E2_setting = true; E1_setting = false; show_E_setting('B');}
+function goto_E1()             {if (refSdblprime()) {t = E1.t_dblprime;} else if (refSprime()) {t = E1.t_prime;} else {t = E1.t;} calcTime(); drawFrame();}
+function goto_E2()             {if (refSdblprime()) {t = E2.t_dblprime;} else if (refSprime()) {t = E2.t_prime;} else {t = E2.t;} calcTime(); drawFrame();}
 
 // event handlers
 
@@ -3037,8 +3048,8 @@ function mouseDown(event)
 {
 	if (!started || control_input(event)) return;
 	P_mousedown.X = event.pageX; P_mousedown.Y = event.pageY;
-	if		  ((E1_setting || atEvent(E1)) && paused) {E1_dragging = true; E1set = true; inherit('gotoE1_button');}
-	else if ((E2_setting || atEvent(E2)) && paused) {E2_dragging = true; E2set = true; inherit('gotoE2_button');}
+	if		  ((E1_setting || atEvent(E1)) && paused) {E1_dragging = true; E1set = true; inherit('goto_E1_button');}
+	else if ((E2_setting || atEvent(E2)) && paused) {E2_dragging = true; E2set = true; inherit('goto_E2_button');}
 	else
 	{
     offset_x_down = offset_x; offset_y_down = offset_y; canvasClockCoords(P_clock_down); prev_scale = scale;
@@ -3136,7 +3147,7 @@ function buttonClick(event)
 		return (event.type == "click")      && ((targetType(event,"button") || targetType(event,"radio") || targetType(event,"checkbox")));
 }
 
-function diagram_disable()
+function diagram_disabled()
 {
   var reason;
 
@@ -3150,7 +3161,7 @@ function diagram_disable()
   if (On("Sdblprime_clocks_checkbox"))  {if (reason != "") reason = reason + ", "; reason = reason + 't" clocks';}
   if (On("retarded_waves_checkbox"))    {if (reason != "") reason = reason + ", "; reason = reason + "Retarded Waves";}
   if (On("advanced_waves_checkbox"))    {if (reason != "") reason = reason + ", "; reason = reason + "Advanced Waves";}
-  if (On("coord_checkbox"))             {if (reason != "") reason = reason + ", "; reason = reason + "Events";}
+  if (On("coord_checkbox") && paused)   {if (reason != "") reason = reason + ", "; reason = reason + "Events";}
   if (!On("photons_checkbox"))          {reason = "Photons off";}
   return (reason);
 }
@@ -3163,13 +3174,13 @@ function diagramsOn()
   // if ((theta != 0) || On("S_grid_checkbox") || On("Sprime_grid_checkbox") || On("Sdblprime_grid_checkbox") || 
   // On("S_clocks_checkbox") || On("Sprime_clocks_checkbox") || On("Sdblprime_clocks_checkbox") ||
   // On("retarded_waves_checkbox") || On("advanced_waves_checkbox") || On("coord_checkbox"))
-  reason = diagram_disable();
+  reason = diagram_disabled();
   if (reason == "Photons off")
   {
     title = S_diagrams_title + "\n--> To enable S diagrams check Photons"; if ($i("S_diagrams_span").title != title) $i("S_diagrams_span").title = title;
     title = Sprime_diagrams_title + "\n--> To enable S' diagrams check Photons"; if ($i("Sprime_diagrams_span").title != title) $i("Sprime_diagrams_span").title = title;
     title = Sdblprime_diagrams_title + '\n--> To enable S" diagrams check Photons' + reason; if ($i("Sdblprime_diagrams_span").title != title) $i("Sdblprime_diagrams_span").title = title;
-    $i("S_diagrams").disabled = true; $i("Sprime_diagrams").disabled = true; $i("Sdblprime_diagrams").disabled = true;
+    $i("S_diag_checkbox").disabled = true; $i("Sprime_diag_checkbox").disabled = true; $i("Sdblprime_diag_checkbox").disabled = true;
     disableDiagrams();
     return false;
   }
@@ -3178,24 +3189,24 @@ function diagramsOn()
     title = S_diagrams_title + "\n--> To enable S diagrams uncheck " + reason; if ($i("S_diagrams_span").title != title) $i("S_diagrams_span").title = title;
     title = Sprime_diagrams_title + "\n--> To enable S' diagrams uncheck " + reason; if ($i("Sprime_diagrams_span").title != title) $i("Sprime_diagrams_span").title = title;
     title = Sdblprime_diagrams_title + '\n--> To enable S" diagrams uncheck ' + reason; if ($i("Sdblprime_diagrams_span").title != title) $i("Sdblprime_diagrams_span").title = title;
-    $i("S_diagrams").disabled = true; $i("Sprime_diagrams").disabled = true; $i("Sdblprime_diagrams").disabled = true;
+    $i("S_diag_checkbox").disabled = true; $i("Sprime_diag_checkbox").disabled = true; $i("Sdblprime_diag_checkbox").disabled = true;
     disableDiagrams();
     return false;
   }
   else // OK to enable Diagrams
   {
     $i("S_diagrams_span").title = S_diagrams_title; $i("Sprime_diagrams_span").title = Sprime_diagrams_title; $i("Sdblprime_diagrams_span").title = Sdblprime_diagrams_title;
-    $i("S_diagrams").disabled = false; $i("Sprime_diagrams").disabled = false; $i("Sdblprime_diagrams").disabled = (ref == 'SR_lab' || ref == 'SR_rocket');
+    $i("S_diag_checkbox").disabled = false; $i("Sprime_diag_checkbox").disabled = false; $i("Sdblprime_diag_checkbox").disabled = (ref == 'SR_lab' || ref == 'SR_rocket');
     enableDiagrams();
-    return (On("S_diagrams") || On("Sprime_diagrams") || On("Sdblprime_diagrams"));
+    return (On("S_diag_checkbox") || On("Sprime_diag_checkbox") || On("Sdblprime_diag_checkbox"));
   }
 }
 
 function setClocksCheckbox()
 {
   if (On("S_clocks_checkbox") || On("Sprime_clocks_checkbox") || On("Sdblprime_clocks_checkbox"))
-        $i("mini_light_clocks_checkbox").disabled = false;
-  else  $i("mini_light_clocks_checkbox").disabled = true;
+        $i("mini_lightclocks_checkbox").disabled = false;
+  else  $i("mini_lightclocks_checkbox").disabled = true;
 }
 
 var button_timer;
@@ -3209,28 +3220,121 @@ function holdButtonOff() {clearTimeout(button_timer);}
 function checkDiagrams() {if (diagramsOn()) enableDiagrams(); else disableDiagrams();}
 function change() {checkDiagrams(); setClocksCheckbox(); enableCoord($i('coord_checkbox').checked); drawFrame();}
 
+function contextmenu(event) {event.preventDefault();}
+
 // capture:false means use bubble up, passive:false means allow preventDefault
 
 canvas = $i('canvas');
-canvas.addEventListener("gesturestart",   gestureStart,   {capture:false, passive:false});
-canvas.addEventListener("gesturechange",  gestureChange,  {capture:false, passive:false});
-canvas.addEventListener("gestureend",     gestureEnd,     {capture:false, passive:false});
-canvas.addEventListener("touchstart",     touchStart,     {capture:false, passive:false});
-canvas.addEventListener("touchmove",      touchMove,      {capture:false, passive:false});
-canvas.addEventListener("touchend",       touchEnd,       {capture:false, passive:false});
-canvas.addEventListener("mousedown",      mouseDown,      {capture:false, passive:false});
-canvas.addEventListener("mousemove",      mouseMove,      {capture:false, passive:false});
-canvas.addEventListener("mouseup",        mouseUp,        {capture:false, passive:false});
+canvas.addEventListener("gesturestart",   gestureStart);
+canvas.addEventListener("gesturechange",  gestureChange);
+canvas.addEventListener("gestureend",     gestureEnd);
+canvas.addEventListener("touchstart",     touchStart);
+canvas.addEventListener("touchmove",      touchMove);
+canvas.addEventListener("touchend",       touchEnd);
+canvas.addEventListener("mousedown",      mouseDown);
+canvas.addEventListener("mousemove",      mouseMove);
+canvas.addEventListener("mouseup",        mouseUp);
+canvas.addEventListener("contextmenu",    contextmenu);
 
 controls = $i('controls');
-controls.addEventListener("change",       change,         {capture:false, passive:false});
-//controls.addEventListener("touchstart",   touchStart,     {capture:false, passive:false});
-//controls.addEventListener("touchmove",    touchMove,      {capture:false, passive:false});
-//controls.addEventListener("touchend",     touchEnd,       {capture:false, passive:false});
-//controls.addEventListener("mousedown",    mouseDown,      {capture:false, passive:false});
-//controls.addEventListener("mousemove",    mouseMove,      {capture:false, passive:false});
-//controls.addEventListener("mouseup",      mouseUp,        {capture:false, passive:false});
+controls.addEventListener("change",       change);
+controls.addEventListener("contextmenu",  contextmenu);
 
+// ranges
+$i('speed_range').addEventListener("input", speed_change);
+//$i('speed_range').addEventListener("touchstart",  function() {speed_slider = true;});
+//$i('speed_range').addEventListener("touchmove",  speed_change);
+//$i('speed_range').addEventListener("touchend",  function() {speed_change(); speed_slider = false;});
+//$i('speed_range').addEventListener("mousedown",  function() {speed_slider = true;});
+//$i('speed_range').addEventListener("mousemove",  speed_change);
+//$i('speed_range').addEventListener("mouseup",  function() {speed_change(); speed_slider = false;});
+
+function eventListeners(down,out,up)
+{
+  // radio input
+  $i('Lab').addEventListener(up,             SRlab);
+  $i('Rocket').addEventListener(up,          SRrocket);
+  $i('Rain').addEventListener(up,            GRrain);
+  $i('Shell').addEventListener(up,           GRshell);
+  $i('Far').addEventListener(up,             GRfar);
+  $i('Forward').addEventListener(up,         forward_time);
+  $i('Backward').addEventListener(up,        backward_time);
+  $i('centered_button').addEventListener(up, centeredButton);
+  $i('XT_span').addEventListener(up,         XT);
+  $i('XT_Yplus_span').addEventListener(up,   XT_Yplus);
+  $i('XT_Yminus_span').addEventListener(up,  XT_Yminus);
+  $i('YT_span').addEventListener(up,         YT);
+  
+  // spans
+  $i('speed_span').addEventListener(up,      speedSpan);
+  $i('gamma_span').addEventListener(up,      gammaSpan);
+  $i('r_span').addEventListener(up,          rSpan);
+  $i('current_time').addEventListener(up,    get_t);
+  
+  // checkboxes as firstChild
+  $i('Photons').addEventListener(up,                 toggleCheckbox);
+  $i('Annotation').addEventListener(up,              toggleCheckbox);
+  $i('Retarded').addEventListener(up,                toggleCheckbox);
+  $i('Advanced').addEventListener(up,                toggleCheckbox);
+  $i('Full').addEventListener(up,                    toggleCheckbox);
+  $i('S_grid_span').addEventListener(up,             toggleCheckbox);
+  $i('Sprime_grid_span').addEventListener(up,        toggleCheckbox);
+  $i('Sdblprime_grid_span').addEventListener(up,     toggleCheckbox);
+  $i('S_clocks_span').addEventListener(up,           toggleCheckbox);
+  $i('Sprime_clocks_span').addEventListener(up,      toggleCheckbox);
+  $i('Sdblprime_clocks_span').addEventListener(up,   toggleCheckbox);
+  $i('mini_lightclocks').addEventListener(up,        toggleCheckbox);
+  $i('S_diagrams_span').addEventListener(up,         toggleCheckbox);
+  $i('Sprime_diagrams_span').addEventListener(up,    toggleCheckbox);
+  $i('Sdblprime_diagrams_span').addEventListener(up, toggleCheckbox);
+  
+  // buttons
+  $i('zoom_out_button').addEventListener(down,       zoom_out_down);
+  $i('zoom_out_button').addEventListener(out,        zoom_out_up);
+  $i('zoom_out_button').addEventListener(up,         zoom_out_up);
+  $i('zoom_zero_button').addEventListener(up,        zoom_zero);
+  $i('zoom_in_button').addEventListener(down,        zoom_in_down);
+  $i('zoom_in_button').addEventListener(out,         zoom_in_up);
+  $i('zoom_in_button').addEventListener(up,          zoom_in_up);
+  $i('rotate_ccw_button').addEventListener(down,     rotate_ccw_down);
+  $i('rotate_ccw_button').addEventListener(out,      rotate_ccw_up);
+  $i('rotate_ccw_button').addEventListener(up,       rotate_ccw_up);
+  $i('rotate_zero_button').addEventListener(up,      rotate_zero);
+  $i('rotate_cw_button').addEventListener(down,      rotate_cw_down);
+  $i('rotate_cw_button').addEventListener(out,       rotate_cw_up);
+  $i('rotate_cw_button').addEventListener(up,        rotate_cw_up);
+  $i('slower_button').addEventListener(up,           slower);
+  $i('faster_button').addEventListener(up,           faster);
+  $i('reset_button').addEventListener(up,            reset);
+  $i('exit_button').addEventListener(up,             exit);
+  $i('pause_resume_button').addEventListener(up,     pause_resume);
+  $i('stepbackward_button').addEventListener(down,   stepbackward_down);
+  $i('stepbackward_button').addEventListener(out,    stepbackward_up);
+  $i('stepbackward_button').addEventListener(up,     stepbackward_up);
+  $i('stepforward_button').addEventListener(down,    stepforward_down);
+  $i('stepforward_button').addEventListener(out,     stepforward_up);
+  $i('stepforward_button').addEventListener(up,      stepforward_up);
+  $i('set_E1_button').addEventListener(up,           set_E1);
+  $i('set_E2_button').addEventListener(up,           set_E2);
+  $i('goto_E1_button').addEventListener(up,          goto_E1);
+  $i('goto_E2_button').addEventListener(up,          goto_E2);
+  $i('SR_button').addEventListener(up,               SR);
+  $i('GR_button').addEventListener(up,               GR);
+  $i('return_to_start').addEventListener(up,         return_to_start);
+  $i('return_from_UI').addEventListener(up,          return_to_start);
+  $i('return_from_FAQ_1').addEventListener(up,       return_to_start);
+  $i('return_from_FAQ_2').addEventListener(up,       return_to_start);
+  $i('return_from_SR').addEventListener(up,          return_to_description);
+  $i('return_from_GR').addEventListener(up,          return_to_description);
+  $i('start_button').addEventListener(up,            start);
+  $i('description_button').addEventListener(up,      description);
+  $i('FAQ_button').addEventListener(up,              FAQ);
+  $i('UI_button').addEventListener(up,               UI);
+}
+
+if ('onpointerdown' in window) eventListeners("pointerdown","pointerout","pointerup");
+else if ('ontouchstart' in window) eventListeners("touchstart","touchmove","touchend");
+else eventListeners("mousedown","mouseout","mouseup");
     </script>
   </body>
 </html>
